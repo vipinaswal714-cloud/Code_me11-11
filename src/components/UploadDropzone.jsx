@@ -112,7 +112,7 @@ export default function UploadDropzone({ onDataLoaded }) {
     <div className="max-w-4xl mx-auto py-12 px-4 space-y-8 animate-in fade-in duration-200">
       {/* Title & Tagline */}
       <div className="text-center space-y-2.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-metrica-500/10 text-metrica-600 dark:text-metrica-400 text-xs font-bold uppercase tracking-wider mb-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-metrica-500/10 text-metrica-700 dark:text-metrica-400 text-xs font-bold uppercase tracking-wider mb-2">
           <Zap className="w-3.5 h-3.5" />
           Browser-Native Analytics Studio
         </div>
@@ -160,8 +160,8 @@ export default function UploadDropzone({ onDataLoaded }) {
             <p className="text-base font-bold text-slate-800 dark:text-slate-100">
               Drag & drop your Excel or CSV file here
             </p>
-            <p className="text-xs text-slate-400 dark:text-slate-500">
-              Supports <code className="font-mono text-slate-600 dark:text-slate-300">.xlsx</code>, <code className="font-mono text-slate-600 dark:text-slate-300">.xls</code>, or <code className="font-mono text-slate-600 dark:text-slate-300">.csv</code> up to 100,000+ rows
+            <p className="text-xs text-slate-600 dark:text-slate-400">
+              Supports <code className="font-mono text-slate-700 dark:text-slate-300">.xlsx</code>, <code className="font-mono text-slate-700 dark:text-slate-300">.xls</code>, or <code className="font-mono text-slate-700 dark:text-slate-300">.csv</code> up to 100,000+ rows
             </p>
           </div>
 
@@ -212,7 +212,7 @@ export default function UploadDropzone({ onDataLoaded }) {
 
       {/* Quick Demo Sample Data Presets */}
       <div className="space-y-3">
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 justify-center">
+        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 justify-center">
           <Sparkles className="w-3.5 h-3.5 text-amber-500" />
           Or explore instant sample datasets:
         </div>
@@ -235,7 +235,7 @@ export default function UploadDropzone({ onDataLoaded }) {
             <p className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-metrica-600 dark:group-hover:text-metrica-400">
               Global Sales & Revenue
             </p>
-            <p className="text-[11px] text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
               1,200 rows with dates, products, margins & regions
             </p>
           </button>
@@ -257,7 +257,7 @@ export default function UploadDropzone({ onDataLoaded }) {
             <p className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400">
               Performance Stress Test
             </p>
-            <p className="text-[11px] text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
               Tests high-volume aggregation & rendering speeds
             </p>
           </button>
@@ -279,7 +279,7 @@ export default function UploadDropzone({ onDataLoaded }) {
             <p className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
               Dirty Data with Nulls
             </p>
-            <p className="text-[11px] text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
               Deliberate duplicate rows & empty cells to clean
             </p>
           </button>
@@ -291,7 +291,7 @@ export default function UploadDropzone({ onDataLoaded }) {
             className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-emerald-500 hover:bg-emerald-50/30 dark:hover:bg-slate-800 text-left transition-all group"
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+              <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
                 <FileText className="w-4 h-4" />
               </span>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
@@ -301,7 +301,7 @@ export default function UploadDropzone({ onDataLoaded }) {
             <p className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
               Support Tickets
             </p>
-            <p className="text-[11px] text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
               Categorical frequencies with zero numeric measures
             </p>
           </button>

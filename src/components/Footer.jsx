@@ -22,22 +22,22 @@ export default function Footer({ onNavigatePrivacy, onOpenSettings }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         {/* Left: Branding & Core Privacy Promise */}
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-1.5 font-bold text-slate-700 dark:text-slate-200">
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-slate-600 dark:text-slate-400">
+          <div className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200">
             <span className="w-4 h-4 rounded bg-metrica-600 text-white flex items-center justify-center text-[10px] font-black">
               M
             </span>
             <span>Metrica</span>
           </div>
           <span>•</span>
-          <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+          <span className="flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-medium">
             <ShieldCheck className="w-3.5 h-3.5" />
             Client-side analytics: your data stays on your device
           </span>
         </div>
 
         {/* Right: Privacy Notice Link & Security Badges */}
-        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 text-slate-500 dark:text-slate-400">
+        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 text-slate-600 dark:text-slate-400">
           <a
             href="/privacy"
             onClick={handlePrivacyClick}

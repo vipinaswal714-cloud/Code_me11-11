@@ -1,0 +1,224 @@
+{
+  "totalRuns": 15,
+  "baseline": {
+    "url": "http://localhost:5174",
+    "runs": [
+      {
+        "run": 1,
+        "fps": 37,
+        "janks": 1,
+        "switchTime": 2252
+      },
+      {
+        "run": 2,
+        "fps": 43,
+        "janks": 1,
+        "switchTime": 1888
+      },
+      {
+        "run": 3,
+        "fps": 46,
+        "janks": 1,
+        "switchTime": 2065
+      },
+      {
+        "run": 4,
+        "fps": 45,
+        "janks": 1,
+        "switchTime": 1764
+      },
+      {
+        "run": 5,
+        "fps": 47,
+        "janks": 1,
+        "switchTime": 1947
+      },
+      {
+        "run": 6,
+        "fps": 41,
+        "janks": 1,
+        "switchTime": 1751
+      },
+      {
+        "run": 7,
+        "fps": 48,
+        "janks": 1,
+        "switchTime": 1877
+      },
+      {
+        "run": 8,
+        "fps": 30,
+        "janks": 1,
+        "switchTime": 2441
+      },
+      {
+        "run": 9,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 1788
+      },
+      {
+        "run": 10,
+        "fps": 30,
+        "janks": 1,
+        "switchTime": 1928
+      },
+      {
+        "run": 11,
+        "fps": 45,
+        "janks": 1,
+        "switchTime": 1874
+      },
+      {
+        "run": 12,
+        "fps": 45,
+        "janks": 1,
+        "switchTime": 2089
+      },
+      {
+        "run": 13,
+        "fps": 46,
+        "janks": 1,
+        "switchTime": 1784
+      },
+      {
+        "run": 14,
+        "fps": 45,
+        "janks": 1,
+        "switchTime": 1763
+      },
+      {
+        "run": 15,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 1716
+      }
+    ],
+    "fps": {
+      "min": 30,
+      "median": 45,
+      "p90": 47
+    },
+    "janks": {
+      "min": 1,
+      "median": 1,
+      "p90": 1
+    },
+    "switchTime": {
+      "min": 1716,
+      "median": 1877,
+      "p90": 2252
+    }
+  },
+  "glass": {
+    "url": "http://localhost:5173",
+    "runs": [
+      {
+        "run": 1,
+        "fps": 26,
+        "janks": 1,
+        "switchTime": 2125
+      },
+      {
+        "run": 2,
+        "fps": 42,
+        "janks": 1,
+        "switchTime": 1998
+      },
+      {
+        "run": 3,
+        "fps": 38,
+        "janks": 1,
+        "switchTime": 2078
+      },
+      {
+        "run": 4,
+        "fps": 45,
+        "janks": 1,
+        "switchTime": 1883
+      },
+      {
+        "run": 5,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 2156
+      },
+      {
+        "run": 6,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 1907
+      },
+      {
+        "run": 7,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 2050
+      },
+      {
+        "run": 8,
+        "fps": 35,
+        "janks": 1,
+        "switchTime": 2360
+      },
+      {
+        "run": 9,
+        "fps": 40,
+        "janks": 1,
+        "switchTime": 2107
+      },
+      {
+        "run": 10,
+        "fps": 43,
+        "janks": 1,
+        "switchTime": 1892
+      },
+      {
+        "run": 11,
+        "fps": 36,
+        "janks": 1,
+        "switchTime": 2014
+      },
+      {
+        "run": 12,
+        "fps": 38,
+        "janks": 1,
+        "switchTime": 1832
+      },
+      {
+        "run": 13,
+        "fps": 48,
+        "janks": 1,
+        "switchTime": 2055
+      },
+      {
+        "run": 14,
+        "fps": 43,
+        "janks": 1,
+        "switchTime": 1911
+      },
+      {
+        "run": 15,
+        "fps": 52,
+        "janks": 1,
+        "switchTime": 1735
+      }
+    ],
+    "fps": {
+      "min": 26,
+      "median": 40,
+      "p90": 48
+    },
+    "janks": {
+      "min": 1,
+      "median": 1,
+      "p90": 1
+    },
+    "switchTime": {
+      "min": 1735,
+      "median": 2014,
+      "p90": 2156
+    }
+  },
+  "switchDeltaMedianPct": 7.3
+}

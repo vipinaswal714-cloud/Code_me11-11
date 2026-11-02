@@ -97,6 +97,7 @@ export default function SettingsModal({ isOpen, onClose }) {
           </div>
           <button
             onClick={onClose}
+            aria-label="Close settings"
             className="p-1.5 rounded-lg text-glass-muted hover:text-glass-primary hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -126,8 +127,8 @@ export default function SettingsModal({ isOpen, onClose }) {
               </span>
               <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
                 proxyInfo?.status === 'ok'
-                  ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30'
-                  : 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30'
+                  ? 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30'
+                  : 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30'
               }`}>
                 {proxyInfo?.status === 'ok' ? 'Proxy Online' : 'Connecting...'}
               </span>
@@ -148,10 +149,10 @@ export default function SettingsModal({ isOpen, onClose }) {
               </span>
               <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
                 supabaseStatus === 'connected'
-                  ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30'
+                  ? 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30'
                   : supabaseStatus === 'checking'
-                  ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30'
-                  : 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30'
+                  ? 'bg-blue-500/15 text-blue-800 dark:text-blue-300 border border-blue-500/30'
+                  : 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30'
               }`}>
                 {supabaseStatus === 'connected'
                   ? 'Connected'
@@ -181,11 +182,13 @@ export default function SettingsModal({ isOpen, onClose }) {
 
           {/* Gemini Model Selection */}
           <div className="space-y-1.5">
-            <label className="flex items-center gap-1.5 text-xs font-semibold text-glass-primary">
+            <label htmlFor="gemini-model-select" className="flex items-center gap-1.5 text-xs font-semibold text-glass-primary">
               <Cpu className="w-3.5 h-3.5 text-glass-muted" />
               Gemini Model Name
             </label>
             <select
+              id="gemini-model-select"
+              aria-label="Gemini Model Name"
               value={model}
               onChange={(e) => setModel(e.target.value)}
               className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary focus:outline-none focus:ring-2 focus:ring-metrica-500/40 font-mono"
