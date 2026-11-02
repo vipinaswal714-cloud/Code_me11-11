@@ -226,21 +226,21 @@ export default function AskAIPanel({
   };
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[480px] bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col transition-all duration-200">
+    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[480px] glass-panel border-l border-glass-border shadow-glass-lg flex flex-col text-glass-primary transition-all duration-200">
       {/* Header */}
-      <div className="h-16 px-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+      <div className="h-16 px-5 border-b border-glass-border flex items-center justify-between glass-opaque">
         <div className="flex items-center gap-2.5">
           <div className="p-2 rounded-xl bg-gradient-to-tr from-metrica-600 to-cyan-500 text-white shadow-sm">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h3 className="font-bold text-sm text-slate-900 dark:text-white">Ask AI</h3>
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-metrica-100 dark:bg-metrica-950 text-metrica-700 dark:text-metrica-300">
+              <h3 className="font-bold text-sm text-glass-primary">Ask AI</h3>
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-metrica-500/20 text-metrica-600 dark:text-metrica-400 border border-metrica-500/30">
                 Gemini
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">Natural language insights & chart recommendations</p>
+            <p className="text-[11px] text-glass-muted">Natural language insights & chart recommendations</p>
           </div>
         </div>
 
@@ -248,13 +248,13 @@ export default function AskAIPanel({
           <button
             onClick={onOpenSettings}
             title="AI Settings"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-glass-muted hover:text-glass-primary hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
           >
             <Settings className="w-4 h-4" />
           </button>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-glass-muted hover:text-glass-primary hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -265,18 +265,18 @@ export default function AskAIPanel({
       <div className="flex-1 overflow-y-auto p-5 space-y-4">
         {/* Ask AI First-Use Privacy Acknowledgment Card */}
         {!isAcknowledged && (
-          <div className="p-5 rounded-2xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-slate-900 dark:text-slate-100 space-y-3 mb-4 shadow-sm">
+          <div className="p-5 rounded-2xl glass-card border border-amber-500/40 text-glass-primary space-y-3 mb-4 shadow-glass">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
+              <div className="p-2 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                 <ShieldAlert className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-xs">Ask AI Privacy Disclosure</h4>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">First-use acknowledgment required</p>
+                <h4 className="font-bold text-xs text-glass-primary">Ask AI Privacy Disclosure</h4>
+                <p className="text-[11px] text-glass-muted">First-use acknowledgment required</p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed bg-white/70 dark:bg-slate-900/70 p-3 rounded-xl border border-amber-100 dark:border-amber-900/50">
+            <p className="text-xs text-glass-secondary leading-relaxed glass-opaque p-3 rounded-xl border border-glass-border">
               {ASK_AI_NOTICE}
             </p>
 
@@ -310,13 +310,13 @@ export default function AskAIPanel({
 
         {/* Missing API Key Warning on Server */}
         {!backendConfigured && (
-          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200 space-y-2">
-            <div className="flex items-center gap-2 font-bold">
+          <div className="p-4 rounded-2xl glass-opaque border border-amber-500/40 text-xs text-glass-primary space-y-2">
+            <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400">
               <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               Google Gemini API Key Required
             </div>
-            <p className="text-[11px] opacity-90">
-              Please configure <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900 rounded font-mono">GEMINI_API_KEY</code> in <code className="font-mono">server/.env</code> to activate Ask AI Q&A and chart recommendations.
+            <p className="text-[11px] text-glass-secondary opacity-90">
+              Please configure <code className="px-1 py-0.5 bg-amber-500/15 text-amber-700 dark:text-amber-300 rounded font-mono">GEMINI_API_KEY</code> in <code className="font-mono">server/.env</code> to activate Ask AI Q&A and chart recommendations.
             </p>
             <button
               onClick={onOpenSettings}
@@ -331,18 +331,18 @@ export default function AskAIPanel({
         {/* Welcome State when no conversation yet */}
         {conversation.length === 0 && (
           <div className="space-y-4 pt-2">
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300">
-              <p className="font-semibold text-slate-900 dark:text-white mb-1">
+            <div className="p-4 rounded-2xl glass-card border border-glass-border text-xs text-glass-secondary">
+              <p className="font-semibold text-glass-primary mb-1">
                 👋 Ask any question about your data!
               </p>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-[11px] text-glass-muted leading-relaxed">
                 Powered by Google Gemini. Ask about top performers, trends over time, or have the AI build a starter chart tile for your dashboard.
               </p>
             </div>
 
             {/* Suggested Starter Questions */}
             <div className="space-y-2">
-              <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400 px-1">
+              <p className="text-[10px] uppercase font-bold tracking-wider text-glass-muted px-1">
                 Suggested Questions
               </p>
               <div className="flex flex-col gap-1.5">
@@ -351,7 +351,7 @@ export default function AskAIPanel({
                     key={idx}
                     onClick={() => handleAsk(q)}
                     disabled={!isAcknowledged || isLoading}
-                    className="text-left text-xs p-2.5 rounded-xl bg-white dark:bg-slate-800/80 hover:bg-metrica-50 dark:hover:bg-slate-700/60 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="text-left text-xs p-2.5 rounded-xl glass-opaque hover:border-metrica-400 border border-glass-border text-glass-secondary hover:text-glass-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {q}
                   </button>
@@ -371,18 +371,18 @@ export default function AskAIPanel({
               className={`max-w-[90%] rounded-2xl p-4 text-xs ${
                 msg.role === 'user'
                   ? 'bg-metrica-600 text-white rounded-br-none shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-bl-none border border-slate-200/80 dark:border-slate-700'
+                  : 'glass-card text-glass-primary rounded-bl-none border border-glass-border shadow-sm'
               }`}
             >
               {msg.role === 'user' ? (
                 <p className="whitespace-pre-wrap leading-relaxed">{msg.text}</p>
               ) : (
                 <div className="space-y-3">
-                  <p className="leading-relaxed whitespace-pre-wrap">{msg.answer}</p>
+                  <p className="leading-relaxed whitespace-pre-wrap text-glass-primary">{msg.answer}</p>
 
                   {/* Bullet Insights */}
                   {msg.insights && msg.insights.length > 0 && (
-                    <ul className="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 pt-1 text-[11px]">
+                    <ul className="list-disc list-inside space-y-1 text-glass-secondary pt-1 text-[11px]">
                       {msg.insights.map((ins, i) => (
                         <li key={i}>{ins}</li>
                       ))}
@@ -391,15 +391,15 @@ export default function AskAIPanel({
 
                   {/* Recommended Chart Card */}
                   {msg.chart && (
-                    <div className="mt-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div className="mt-3 p-3 rounded-xl glass-opaque border border-glass-border shadow-sm">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <BarChart2 className="w-3.5 h-3.5 text-metrica-600 dark:text-metrica-400" />
-                          <span className="font-bold text-[11px] text-slate-900 dark:text-white">
+                          <BarChart2 className="w-3.5 h-3.5 text-metrica-500" />
+                          <span className="font-bold text-[11px] text-glass-primary">
                             {msg.chart.title || 'Recommended Chart'}
                           </span>
                         </div>
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] uppercase font-semibold text-glass-muted glass-opaque border border-glass-border px-1.5 py-0.5 rounded">
                           {msg.chart.type}
                         </span>
                       </div>
@@ -408,7 +408,7 @@ export default function AskAIPanel({
                       {renderMiniChart(msg.chart)}
 
                       {/* Explicit Calculation Note */}
-                      <p className="text-[10px] text-slate-400 flex items-center gap-1 mt-1">
+                      <p className="text-[10px] text-glass-muted flex items-center gap-1 mt-1">
                         <Calculator className="w-3 h-3 text-metrica-500" />
                         <span>Calculated on complete dataset via JavaScript engine</span>
                       </p>
@@ -418,8 +418,8 @@ export default function AskAIPanel({
                         disabled={addedTileIds.has(msg.chart.title)}
                         className={`mt-2.5 w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg font-semibold text-xs transition-all ${
                           addedTileIds.has(msg.chart.title)
-                            ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
-                            : 'bg-metrica-50 dark:bg-metrica-950/60 hover:bg-metrica-100 dark:hover:bg-metrica-900/60 text-metrica-600 dark:text-metrica-400 border border-metrica-200 dark:border-metrica-800'
+                            ? 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
+                            : 'bg-metrica-500/15 hover:bg-metrica-500/25 text-metrica-600 dark:text-metrica-400 border border-metrica-500/30'
                         }`}
                       >
                         {addedTileIds.has(msg.chart.title) ? (
@@ -439,24 +439,24 @@ export default function AskAIPanel({
 
                   {/* Recommended Condition Rule Card */}
                   {msg.conditionRule && (
-                    <div className="mt-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div className="mt-3 p-3 rounded-xl glass-opaque border border-glass-border shadow-sm">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <Eye className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                          <span className="font-bold text-[11px] text-slate-900 dark:text-white">
+                          <Eye className="w-3.5 h-3.5 text-indigo-500" />
+                          <span className="font-bold text-[11px] text-glass-primary">
                             Generated Condition Rule
                           </span>
                         </div>
-                        <span className="text-[10px] uppercase font-semibold text-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">
+                        <span className="text-[10px] uppercase font-semibold text-indigo-500 bg-indigo-500/15 px-1.5 py-0.5 rounded border border-indigo-500/30">
                           Rule Suggestion
                         </span>
                       </div>
 
-                      <div className="my-2 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 font-mono text-[11px] text-slate-800 dark:text-slate-200 leading-snug">
+                      <div className="my-2 p-2.5 rounded-lg glass-opaque border border-glass-border font-mono text-[11px] text-glass-primary leading-snug">
                         {formatRuleAsSentence(msg.conditionRule)}
                       </div>
 
-                      <p className="text-[10px] text-slate-400 mb-2">
+                      <p className="text-[10px] text-glass-muted mb-2">
                         Requires user confirmation before application. Review and test in the Conditions Panel.
                       </p>
 
@@ -466,7 +466,7 @@ export default function AskAIPanel({
                             onApplyAiRule(msg.conditionRule);
                           }
                         }}
-                        className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg font-semibold text-xs bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 transition-colors"
+                        className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg font-semibold text-xs bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Review & Load in Conditions Panel</span>
@@ -476,15 +476,15 @@ export default function AskAIPanel({
                 </div>
               )}
             </div>
-            <span className="text-[10px] text-slate-400 mt-1 px-1">{msg.timestamp}</span>
+            <span className="text-[10px] text-glass-muted mt-1 px-1">{msg.timestamp}</span>
           </div>
         ))}
 
         {/* Loading Indicator */}
         {isLoading && (
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-fit animate-pulse">
+          <div className="flex items-center gap-3 p-3.5 rounded-2xl glass-card border border-glass-border w-fit animate-pulse">
             <Sparkles className="w-4 h-4 text-metrica-500 animate-spin" />
-            <span className="text-xs text-slate-500 dark:text-slate-400">
+            <span className="text-xs text-glass-muted">
               Gemini is analyzing your data sample...
             </span>
           </div>
@@ -492,12 +492,12 @@ export default function AskAIPanel({
 
         {/* Error Box */}
         {error && (
-          <div className="p-4 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-900 dark:text-red-200 space-y-2">
-            <div className="flex items-center gap-2 font-bold">
+          <div className="p-4 rounded-2xl glass-opaque border border-red-500/40 text-xs text-glass-primary space-y-2">
+            <div className="flex items-center gap-2 font-bold text-red-600 dark:text-red-400">
               <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
               Query Error
             </div>
-            <p className="text-[11px] opacity-90 leading-relaxed">{error.message}</p>
+            <p className="text-[11px] text-glass-secondary opacity-90 leading-relaxed">{error.message}</p>
           </div>
         )}
 
@@ -505,7 +505,7 @@ export default function AskAIPanel({
       </div>
 
       {/* Notice & Query Input Footer */}
-      <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70">
+      <div className="p-4 border-t border-glass-border glass-opaque">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -523,7 +523,7 @@ export default function AskAIPanel({
                 ? 'Please review and accept the privacy disclosure above to begin...'
                 : 'Ask about trends, totals, or comparisons...'
             }
-            className="flex-1 px-4 py-2.5 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-metrica-500/40 pr-10 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex-1 px-4 py-2.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary placeholder:text-glass-muted focus:outline-none focus:ring-2 focus:ring-metrica-500/40 pr-10 disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <button
             type="submit"
@@ -537,7 +537,7 @@ export default function AskAIPanel({
         {/* Required Canonical Privacy Notice */}
         <div className="flex items-start gap-1.5 justify-center mt-2.5 text-center px-1">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-          <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-tight">
+          <p className="text-[10px] text-glass-muted leading-tight">
             {ASK_AI_NOTICE}{' '}
             <a
               href="/privacy"

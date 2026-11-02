@@ -41,7 +41,14 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors print:bg-white print:text-black">
+    <div className="min-h-screen relative text-glass-primary transition-colors print:bg-white print:text-black">
+      {/* Pure CSS Ambient Glass Backdrop */}
+      <div className="glass-backdrop print:hidden" aria-hidden="true">
+        <div className="glass-backdrop-blob-1" />
+        <div className="glass-backdrop-blob-2" />
+        <div className="glass-backdrop-blob-3" />
+      </div>
+
       {/* Skip to Content Link (Accessibility) */}
       <a
         href="#privacy-content"
@@ -120,10 +127,10 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Table of Contents (Desktop Sticky Sidebar) */}
           <aside className="lg:col-span-4 lg:sticky lg:top-24 order-2 lg:order-1 print:hidden">
-            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
-                <FileText className="w-4 h-4 text-metrica-600 dark:text-metrica-400" />
-                <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+            <div className="p-5 rounded-2xl border border-glass-border glass-panel text-glass-primary shadow-glass">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-glass-border">
+                <FileText className="w-4 h-4 text-metrica-500" />
+                <h2 className="text-xs font-bold uppercase tracking-wider text-glass-primary">
                   Table of Contents
                 </h2>
               </div>
@@ -133,14 +140,14 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
                     key={item.id || idx}
                     type="button"
                     onClick={() => handleScrollToSection(item.id)}
-                    className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-metrica-600 dark:hover:text-metrica-400 transition-colors truncate block"
+                    className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-medium text-glass-secondary hover:text-glass-primary hover:bg-white/40 dark:hover:bg-white/10 transition-colors truncate block"
                   >
                     {item.title}
                   </button>
                 ))}
               </nav>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+              <div className="mt-6 pt-4 border-t border-glass-border flex items-center justify-between text-[11px] text-glass-muted">
                 <span className="flex items-center gap-1.5">
                   <Lock className="w-3.5 h-3.5 text-emerald-500" />
                   Version {PRIVACY_NOTICE_VERSION}.0
@@ -157,21 +164,21 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
           <main
             id="privacy-content"
             role="main"
-            className="lg:col-span-8 order-1 lg:order-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm print:shadow-none print:border-none print:p-0 print:m-0"
+            className="lg:col-span-8 order-1 lg:order-2 glass-panel text-glass-primary border border-glass-border rounded-3xl p-6 sm:p-10 lg:p-12 shadow-glass print:shadow-none print:border-none print:p-0 print:m-0"
           >
             {/* Meta Header */}
-            <div className="pb-6 mb-8 border-b border-slate-200 dark:border-slate-800">
+            <div className="pb-6 mb-8 border-b border-glass-border">
               <div className="flex items-center gap-2 text-xs font-semibold text-metrica-600 dark:text-metrica-400 mb-2">
                 <ShieldCheck className="w-4 h-4" />
                 <span>OFFICIAL LEGAL NOTICE</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-glass-primary tracking-tight">
                 Metrica Privacy Notice
               </h1>
-              <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-slate-500 dark:text-slate-400">
+              <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-glass-muted">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
-                  Last updated: <strong>{PRIVACY_NOTICE_LAST_UPDATED}</strong>
+                  Last updated: <strong className="text-glass-primary">{PRIVACY_NOTICE_LAST_UPDATED}</strong>
                 </span>
                 <span>•</span>
                 <span>Version {PRIVACY_NOTICE_VERSION}.0</span>
@@ -180,23 +187,23 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
 
             {/* Sanitized Markdown Render Container */}
             <div
-              className="prose dark:prose-invert max-w-none prose-slate text-sm sm:text-base leading-relaxed
+              className="prose dark:prose-invert max-w-none text-sm sm:text-base leading-relaxed
                 prose-headings:scroll-mt-24
-                prose-headings:font-bold prose-headings:text-slate-900 dark:prose-headings:text-white
-                prose-h2:text-lg sm:prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-slate-100 dark:prose-h2:border-slate-800/80
+                prose-headings:font-bold prose-headings:text-glass-primary
+                prose-h2:text-lg sm:prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-glass-border
                 prose-h3:text-base prose-h3:mt-6 prose-h3:mb-2
-                prose-p:my-3 prose-p:text-slate-600 dark:prose-p:text-slate-300
+                prose-p:my-3 prose-p:text-glass-secondary
                 prose-ul:my-3 prose-ul:list-disc prose-ul:pl-5
-                prose-li:my-1.5 prose-li:text-slate-600 dark:prose-li:text-slate-300
-                prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-metrica-500 prose-blockquote:bg-metrica-50/50 dark:prose-blockquote:bg-metrica-950/20 prose-blockquote:px-4 prose-blockquote:py-2.5 prose-blockquote:rounded-r-xl prose-blockquote:text-slate-700 dark:prose-blockquote:text-slate-300 prose-blockquote:italic
-                prose-strong:text-slate-900 dark:prose-strong:text-white prose-strong:font-bold
-                prose-a:text-metrica-600 dark:prose-a:text-metrica-400 prose-a:underline hover:prose-a:text-metrica-700
+                prose-li:my-1.5 prose-li:text-glass-secondary
+                prose-blockquote:my-4 prose-blockquote:border-l-4 prose-blockquote:border-metrica-500 prose-blockquote:bg-metrica-500/10 prose-blockquote:px-4 prose-blockquote:py-2.5 prose-blockquote:rounded-r-xl prose-blockquote:text-glass-primary prose-blockquote:italic
+                prose-strong:text-glass-primary prose-strong:font-bold
+                prose-a:text-metrica-600 dark:text-metrica-400 prose-a:underline hover:prose-a:text-metrica-700
                 print:prose-headings:text-black print:prose-p:text-black print:prose-li:text-black"
               dangerouslySetInnerHTML={{ __html: html }}
             />
 
             {/* Bottom Actions */}
-            <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 print:hidden">
+            <div className="mt-12 pt-8 border-t border-glass-border flex flex-wrap items-center justify-between gap-4 print:hidden">
               <button
                 type="button"
                 onClick={onBack}
@@ -208,7 +215,7 @@ export default function PrivacyNoticePage({ onBack, isDark, onToggleTheme }) {
               <button
                 type="button"
                 onClick={handlePrint}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-glass-border glass-button text-glass-primary text-xs font-semibold transition-colors"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Copy</span>

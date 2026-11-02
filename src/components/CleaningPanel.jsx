@@ -259,22 +259,22 @@ export default function CleaningPanel({
       {/* Grid: 3 Cleaning Modules */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* 1. Deduplication */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 custom-card-shadow flex flex-col justify-between space-y-4">
+        <div className="glass-panel text-glass-primary rounded-2xl p-5 shadow-glass flex flex-col justify-between space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="flex items-center gap-2 font-bold text-sm text-slate-900 dark:text-white">
-                <Copy className="w-4 h-4 text-metrica-600 dark:text-metrica-400" />
+              <span className="flex items-center gap-2 font-bold text-sm text-glass-primary">
+                <Copy className="w-4 h-4 text-metrica-500" />
                 Remove Duplicates
               </span>
               <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                 summary?.duplicateCount > 0
-                  ? 'bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300'
-                  : 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300'
+                  ? 'bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30'
+                  : 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
               }`}>
                 {summary?.duplicateCount || 0} duplicates
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-glass-muted font-medium">
               Identifies identical rows across all columns and keeps only the unique first appearance.
             </p>
           </div>
@@ -290,18 +290,18 @@ export default function CleaningPanel({
         </div>
 
         {/* 2. Drop Empty Rows */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 custom-card-shadow flex flex-col justify-between space-y-4">
+        <div className="glass-panel text-glass-primary rounded-2xl p-5 shadow-glass flex flex-col justify-between space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="flex items-center gap-2 font-bold text-sm text-slate-900 dark:text-white">
-                <Trash2 className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span className="flex items-center gap-2 font-bold text-sm text-glass-primary">
+                <Trash2 className="w-4 h-4 text-amber-500" />
                 Drop Empty Rows
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                 {summary?.missingValues || 0} empty cells
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-glass-muted font-medium">
               Discards incomplete rows from analysis. Choose to drop rows with any missing value or target a specific column.
             </p>
           </div>
@@ -309,7 +309,7 @@ export default function CleaningPanel({
           <div className="space-y-2">
             <button
               onClick={() => handleDropEmpty(null)}
-              className="w-full py-2 px-3 rounded-xl text-xs font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 transition-colors"
+              className="w-full py-2 px-3 rounded-xl text-xs font-semibold bg-amber-500/15 hover:bg-amber-500/25 text-amber-700 dark:text-amber-300 border border-amber-500/30 transition-colors"
             >
               Drop rows with ANY empty cell
             </button>
@@ -317,7 +317,7 @@ export default function CleaningPanel({
               <select
                 value={selectedCol}
                 onChange={(e) => setSelectedCol(e.target.value)}
-                className="flex-1 px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+                className="flex-1 px-2.5 py-1.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary"
               >
                 {columns.map(c => (
                   <option key={c.name} value={c.name}>
@@ -327,7 +327,7 @@ export default function CleaningPanel({
               </select>
               <button
                 onClick={() => handleDropEmpty(selectedCol)}
-                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+                className="px-3 py-1.5 rounded-xl text-xs font-semibold glass-button text-glass-primary"
               >
                 Drop
               </button>
@@ -336,13 +336,13 @@ export default function CleaningPanel({
         </div>
 
         {/* 3. Fill / Impute Empty Cells */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 custom-card-shadow flex flex-col justify-between space-y-4">
+        <div className="glass-panel text-glass-primary rounded-2xl p-5 shadow-glass flex flex-col justify-between space-y-4">
           <div>
-            <span className="flex items-center gap-2 font-bold text-sm text-slate-900 dark:text-white mb-2">
-              <Wand2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span className="flex items-center gap-2 font-bold text-sm text-glass-primary mb-2">
+              <Wand2 className="w-4 h-4 text-emerald-500" />
               Fill / Impute Cells
             </span>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-glass-muted font-medium">
               Replaces null or blank values with statistical estimates or custom defaults.
             </p>
           </div>
@@ -350,13 +350,13 @@ export default function CleaningPanel({
           <div className="space-y-2.5">
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-glass-muted block mb-1">
                   Target Column
                 </label>
                 <select
                   value={selectedCol}
                   onChange={(e) => setSelectedCol(e.target.value)}
-                  className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+                  className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary"
                 >
                   {columns.map(c => (
                     <option key={c.name} value={c.name}>
@@ -367,13 +367,13 @@ export default function CleaningPanel({
               </div>
 
               <div>
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-glass-muted block mb-1">
                   Strategy
                 </label>
                 <select
                   value={imputeStrategy}
                   onChange={(e) => setImputeStrategy(e.target.value)}
-                  className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+                  className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary"
                 >
                   <option value="mean">Mean (Average)</option>
                   <option value="median">Median</option>
@@ -390,7 +390,7 @@ export default function CleaningPanel({
                 value={customFillValue}
                 onChange={(e) => setCustomFillValue(e.target.value)}
                 placeholder="Enter fill replacement..."
-                className="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+                className="w-full px-3 py-1.5 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary placeholder:text-glass-muted"
               />
             )}
 
@@ -405,10 +405,10 @@ export default function CleaningPanel({
       </div>
 
       {/* 4. Column Names and Profiles Manager */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 custom-card-shadow">
+      <div className="glass-panel text-glass-primary rounded-2xl p-6 shadow-glass">
         <div className="flex items-center gap-2 mb-4">
-          <Layers className="w-4 h-4 text-metrica-600 dark:text-metrica-400" />
-          <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+          <Layers className="w-4 h-4 text-metrica-500" />
+          <h4 className="font-bold text-sm text-glass-primary">
             Columns & Data Types Manager
           </h4>
         </div>
@@ -419,10 +419,10 @@ export default function CleaningPanel({
             return (
               <div
                 key={col.name}
-                className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex items-center justify-between gap-3"
+                className="p-3.5 rounded-xl border border-glass-border glass-opaque flex items-center justify-between gap-3 shadow-sm"
               >
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                  <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                  <div className="p-1.5 rounded-lg glass-opaque border border-glass-border text-glass-primary">
                     {getColIcon(col.type)}
                   </div>
                   {isEditing ? (
@@ -432,7 +432,7 @@ export default function CleaningPanel({
                         value={newColName}
                         onChange={(e) => setNewColName(e.target.value)}
                         placeholder="New name..."
-                        className="w-full px-2 py-1 text-xs rounded-lg border border-metrica-500 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100"
+                        className="w-full px-2 py-1 text-xs rounded-lg border border-metrica-500 glass-opaque text-glass-primary"
                         autoFocus
                       />
                       <button
@@ -443,17 +443,17 @@ export default function CleaningPanel({
                       </button>
                       <button
                         onClick={() => setEditingColName('')}
-                        className="px-1.5 py-1 text-slate-400 text-[10px]"
+                        className="px-1.5 py-1 text-glass-muted text-[10px]"
                       >
                         ✕
                       </button>
                     </div>
                   ) : (
                     <div className="min-w-0">
-                      <p className="font-semibold text-xs text-slate-800 dark:text-slate-200 truncate">
+                      <p className="font-semibold text-xs text-glass-primary truncate">
                         {col.name}
                       </p>
-                      <span className="text-[10px] text-slate-400 uppercase tracking-wider">
+                      <span className="text-[10px] text-glass-muted uppercase tracking-wider font-medium">
                         {col.type} • {col.nullCount > 0 ? `${col.nullCount} null` : '0 null'}
                       </span>
                     </div>
@@ -467,7 +467,7 @@ export default function CleaningPanel({
                       setNewColName(col.name);
                     }}
                     title="Rename Column"
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-700/60 transition-colors"
+                    className="p-1.5 rounded-lg text-glass-muted hover:text-glass-primary hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                   </button>

@@ -374,7 +374,7 @@ export default function ConditionsPanel({
       return (
         <div
           key={node.id}
-          className="flex flex-wrap items-center gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:border-metrica-400"
+          className="flex flex-wrap items-center gap-2 p-3 rounded-xl border border-glass-border glass-opaque shadow-sm transition-all hover:border-metrica-400"
         >
           {/* NOT toggle */}
           <button
@@ -383,7 +383,7 @@ export default function ConditionsPanel({
             className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-all ${
               node.not
                 ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
-                : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 hover:text-slate-700'
+                : 'glass-opaque border-glass-border text-glass-muted hover:text-glass-primary'
             }`}
           >
             NOT
@@ -393,7 +393,7 @@ export default function ConditionsPanel({
           <select
             value={node.column}
             onChange={(e) => handleUpdateConditionField(node.id, 'column', e.target.value)}
-            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-glass-border glass-opaque text-glass-primary focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
           >
             {columns.map(c => (
               <option key={c.name} value={c.name}>
@@ -406,7 +406,7 @@ export default function ConditionsPanel({
           <select
             value={node.operator}
             onChange={(e) => handleUpdateConditionField(node.id, 'operator', e.target.value)}
-            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-glass-border glass-opaque text-glass-primary focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
           >
             {ops.map(op => (
               <option key={op.id} value={op.id}>
@@ -422,32 +422,32 @@ export default function ConditionsPanel({
               value={node.value}
               onChange={(e) => handleUpdateConditionField(node.id, 'value', e.target.value)}
               placeholder={node.operator === 'in_list' ? 'Apple, Banana, Mango' : 'Value...'}
-              className="flex-1 min-w-[120px] px-3 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+              className="flex-1 min-w-[120px] px-3 py-1.5 text-xs rounded-lg border border-glass-border glass-opaque text-glass-primary focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
             />
           )}
 
           {/* Second value input for 'between' */}
           {needsSecondValue && (
             <>
-              <span className="text-xs text-slate-400 font-medium">and</span>
+              <span className="text-xs text-glass-muted font-medium">and</span>
               <input
                 type={node.columnType === 'date' ? 'date' : node.columnType === 'number' ? 'number' : 'text'}
                 value={node.value2}
                 onChange={(e) => handleUpdateConditionField(node.id, 'value2', e.target.value)}
                 placeholder="End value..."
-                className="flex-1 min-w-[120px] px-3 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+                className="flex-1 min-w-[120px] px-3 py-1.5 text-xs rounded-lg border border-glass-border glass-opaque text-glass-primary focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
               />
             </>
           )}
 
           {/* Case sensitive toggle (for text) */}
           {node.columnType === 'category' && !noValueNeeded && (
-            <label className="flex items-center gap-1.5 text-[11px] text-slate-500 cursor-pointer select-none px-1">
+            <label className="flex items-center gap-1.5 text-[11px] text-glass-muted cursor-pointer select-none px-1">
               <input
                 type="checkbox"
                 checked={node.caseSensitive}
                 onChange={(e) => handleUpdateConditionField(node.id, 'caseSensitive', e.target.checked)}
-                className="rounded border-slate-300 dark:border-slate-700 text-metrica-600 focus:ring-metrica-500 w-3.5 h-3.5"
+                className="rounded border-glass-border text-metrica-600 focus:ring-metrica-500 w-3.5 h-3.5"
               />
               <span>Match case</span>
             </label>
@@ -458,7 +458,7 @@ export default function ConditionsPanel({
             type="button"
             onClick={() => handleRemoveNode(node.id)}
             title="Delete Condition"
-            className="p-1 rounded-lg text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ml-auto"
+            className="p-1 rounded-lg text-glass-muted hover:text-red-500 hover:bg-red-500/10 transition-colors ml-auto"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>
@@ -475,12 +475,12 @@ export default function ConditionsPanel({
           key={node.id}
           className={`p-4 rounded-2xl border ${
             isRoot
-              ? 'border-slate-300 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40'
-              : 'border-metrica-200/80 dark:border-slate-800 bg-metrica-50/30 dark:bg-slate-900/60 ml-2 sm:ml-5'
+              ? 'border-glass-border glass-panel'
+              : 'border-glass-border glass-opaque shadow-sm ml-2 sm:ml-5'
           } space-y-3 relative`}
         >
           {/* Group Header Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800 pb-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-glass-border pb-2.5">
             <div className="flex items-center gap-2">
               {/* Combiner Toggle */}
               <button
@@ -502,13 +502,13 @@ export default function ConditionsPanel({
                 className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-all ${
                   node.not
                     ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
-                    : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 hover:text-slate-700'
+                    : 'glass-opaque border-glass-border text-glass-muted hover:text-glass-primary'
                 }`}
               >
                 NOT GROUP
               </button>
 
-              <span className="text-[11px] text-slate-400 font-medium">
+              <span className="text-[11px] text-glass-muted font-medium">
                 {isOr ? 'Match any rule in this group' : 'Match all rules in this group'}
               </span>
             </div>
@@ -518,7 +518,7 @@ export default function ConditionsPanel({
               <button
                 type="button"
                 onClick={() => handleAddCondition(node.id)}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-metrica-500 text-slate-700 dark:text-slate-200 transition-colors"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold glass-button text-glass-primary"
               >
                 <Plus className="w-3.5 h-3.5 text-metrica-600" />
                 Condition
@@ -528,7 +528,7 @@ export default function ConditionsPanel({
               <button
                 type="button"
                 onClick={() => handleAddGroup(node.id)}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-500 text-slate-700 dark:text-slate-200 transition-colors"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold glass-button text-glass-primary"
               >
                 <Layers className="w-3.5 h-3.5 text-amber-500" />
                 Nested Group
@@ -698,37 +698,37 @@ export default function ConditionsPanel({
             </div>
 
             {/* Readout sentence & Save row */}
-            <div className="md:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 custom-card-shadow flex flex-col justify-between space-y-4">
+            <div className="md:col-span-8 glass-panel text-glass-primary rounded-2xl p-5 shadow-glass flex flex-col justify-between space-y-4">
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-bold uppercase tracking-wider text-glass-muted">
                     Rule Logic Sentence
                   </span>
                   <button
                     onClick={onAiRulePrompt}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-metrica-50 dark:bg-metrica-950/60 text-metrica-600 dark:text-metrica-400 border border-metrica-200 dark:border-metrica-800 hover:bg-metrica-100 transition-colors"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-metrica-500/10 text-metrica-600 dark:text-metrica-400 border border-metrica-500/30 hover:bg-metrica-500/20 transition-colors"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     Ask AI to Build Rule
                   </button>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 font-mono text-xs text-slate-800 dark:text-slate-200 break-words">
+                <div className="p-3 rounded-xl glass-opaque border border-glass-border font-mono text-xs text-glass-primary break-words">
                   {ruleSentence}
                 </div>
               </div>
 
               {/* Save Rule Input */}
-              <div className="flex items-center gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex items-center gap-2 pt-2 border-t border-glass-border">
                 <input
                   type="text"
                   value={ruleNameInput}
                   onChange={(e) => setRuleNameInput(e.target.value)}
                   placeholder="Name this rule (e.g. VIP Customers)..."
-                  className="flex-1 px-3.5 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+                  className="flex-1 px-3.5 py-2 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary placeholder:text-glass-muted focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
                 />
                 <button
                   onClick={handleSaveCurrentRule}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 transition-colors flex-shrink-0"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold glass-button bg-metrica-600 hover:bg-metrica-700 text-white flex-shrink-0"
                 >
                   <Save className="w-3.5 h-3.5" />
                   Save Rule
@@ -738,9 +738,9 @@ export default function ConditionsPanel({
           </div>
 
           {/* Condition Builder Tree */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 custom-card-shadow space-y-4">
+          <div className="glass-panel text-glass-primary rounded-2xl p-6 shadow-glass space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <span className="text-xs font-black uppercase tracking-wider text-glass-muted">
                 Condition Tree (Visual Builder)
               </span>
               <button
@@ -875,19 +875,19 @@ export default function ConditionsPanel({
 
       {/* TAB 2: IF / THEN / ELSE CALCULATED COLUMNS */}
       {activeTab === 'ifthen' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 custom-card-shadow space-y-6">
+        <div className="glass-panel text-glass-primary rounded-2xl p-6 shadow-glass space-y-6">
           <div>
-            <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+            <h4 className="font-bold text-sm text-glass-primary">
               Create New Calculated Column via IF / THEN / ELSE
             </h4>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-glass-muted mt-1">
               Classify your records based on conditions. The resulting column becomes instantly available in the Data Table, Chart Builder, Global Slicers, and CSV exports.
             </p>
           </div>
 
           {/* Target Column Name */}
           <div className="max-w-md space-y-1.5">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <label className="text-xs font-semibold text-glass-secondary">
               New Column Name
             </label>
             <input
@@ -895,7 +895,7 @@ export default function ConditionsPanel({
               value={calcColName}
               onChange={(e) => setCalcColName(e.target.value)}
               placeholder="e.g. Customer_Tier"
-              className="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
+              className="w-full px-3.5 py-2 text-xs rounded-xl border border-glass-border glass-opaque text-glass-primary placeholder:text-glass-muted font-semibold focus:outline-none focus:ring-2 focus:ring-metrica-500/40"
             />
           </div>
 
@@ -1087,19 +1087,19 @@ export default function ConditionsPanel({
 
       {/* TAB 3: SAVED RULES REPOSITORY */}
       {activeTab === 'saved' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 custom-card-shadow space-y-4">
+        <div className="glass-panel text-glass-primary rounded-2xl p-6 shadow-glass space-y-4">
           <div className="flex items-center justify-between">
-            <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+            <h4 className="font-bold text-sm text-glass-primary">
               Saved Conditions & Logic Rules
             </h4>
-            <span className="text-xs text-slate-400">Stored in browser localStorage</span>
+            <span className="text-xs text-glass-muted">Stored in browser localStorage</span>
           </div>
 
           {savedRules.length === 0 ? (
             <div className="py-12 text-center space-y-2">
-              <Bookmark className="w-8 h-8 text-slate-300 dark:text-slate-700 mx-auto" />
-              <p className="text-xs text-slate-500 font-medium">No saved rules yet.</p>
-              <p className="text-[11px] text-slate-400">
+              <Bookmark className="w-8 h-8 text-glass-muted mx-auto" />
+              <p className="text-xs text-glass-muted font-medium">No saved rules yet.</p>
+              <p className="text-[11px] text-glass-muted">
                 Build a condition under the "Condition Rules" tab and save it with a custom name.
               </p>
             </div>
@@ -1108,24 +1108,24 @@ export default function ConditionsPanel({
               {savedRules.map(item => (
                 <div
                   key={item.id}
-                  className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-2.5 flex flex-col justify-between"
+                  className="p-4 rounded-xl border border-glass-border glass-opaque space-y-2.5 flex flex-col justify-between shadow-sm"
                 >
                   <div>
                     <div className="flex items-center justify-between">
-                      <h5 className="font-bold text-xs text-slate-900 dark:text-white">
+                      <h5 className="font-bold text-xs text-glass-primary">
                         {item.name}
                       </h5>
-                      <span className="text-[10px] text-slate-400">{item.createdAt}</span>
+                      <span className="text-[10px] text-glass-muted">{item.createdAt}</span>
                     </div>
-                    <p className="font-mono text-[11px] text-slate-600 dark:text-slate-300 mt-1.5 bg-white dark:bg-slate-800 p-2 rounded-lg border border-slate-200 dark:border-slate-700">
+                    <p className="font-mono text-[11px] text-glass-secondary mt-1.5 glass-opaque p-2 rounded-lg border border-glass-border">
                       {item.sentence}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-glass-border">
                     <button
                       onClick={() => handleDeleteSavedRule(item.id)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
+                      className="p-1.5 rounded-lg text-glass-muted hover:text-red-500 transition-colors"
                       title="Delete saved rule"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
