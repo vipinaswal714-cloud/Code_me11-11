@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 
@@ -325,95 +324,60 @@ export default function App() {
     );
   }
 
-  const isBaselineMode = typeof window !== 'undefined' && window.location.search.includes('mode=baseline');
-
   return (
-    <div className={`min-h-screen flex flex-col relative transition-colors selection:bg-metrica-500 selection:text-white ${
-      isBaselineMode ? 'bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100' : 'text-glass-primary'
-    }`}>
-      {/* Pure CSS Ambient Glass Backdrop (Glass UI only) */}
-      {!isBaselineMode && (
-        <div className="glass-backdrop" aria-hidden="true">
-          <div className="glass-backdrop-blob-1" />
-          <div className="glass-backdrop-blob-2" />
-          <div className="glass-backdrop-blob-3" />
-        </div>
-      )}
+    <div className="min-h-screen flex flex-col relative transition-colors selection:bg-metrica-500 selection:text-white text-glass-primary">
+      {/* Pure CSS Ambient Glass Backdrop */}
+      <div className="glass-backdrop" aria-hidden="true">
+        <div className="glass-backdrop-blob-1" />
+        <div className="glass-backdrop-blob-2" />
+        <div className="glass-backdrop-blob-3" />
+      </div>
 
-      {/* Navigation: Navbar for Baseline, Sidebar + TopBar for Glass UI */}
-      {isBaselineMode ? (
-        <Navbar
-          fileName={fileName}
-          onResetFile={handleResetFile}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          onExportPdf={handleExportPdf}
-          onExportPng={handleExportPng}
-          onExportCsv={handleExportCsv}
-          isDark={isDark}
-          onToggleTheme={() => setIsDark(!isDark)}
-          onOpenSettings={() => setIsSettingsOpen(true)}
-          onToggleAi={() => setIsAiOpen(!isAiOpen)}
-          isAiOpen={isAiOpen}
-          onOpenBuilder={() => {
-            setEditingTile(null);
-            setIsBuilderOpen(true);
-          }}
-          searchQuery={filters.search}
-          onSearchChange={(val) => setFilters(prev => ({ ...prev, search: val }))}
-          onNavigatePrivacy={() => navigateTo('/privacy')}
-        />
-      ) : (
-        <>
-          {/* Floating Left Sidebar Navigation */}
-          <Sidebar
-            activeTab={!fileName ? 'upload' : activeTab}
-            onTabChange={(tab) => {
-              if (tab === 'upload') {
-                handleResetFile(true);
-              } else {
-                setActiveTab(tab);
-              }
-            }}
-            isAiOpen={isAiOpen}
-            onToggleAi={() => setIsAiOpen(!isAiOpen)}
-            onOpenSettings={() => setIsSettingsOpen(true)}
-            onNavigatePrivacy={() => navigateTo('/privacy')}
-            fileName={fileName}
-            isDrawerOpen={isDrawerOpen}
-            onCloseDrawer={() => setIsDrawerOpen(false)}
-            triggerRef={drawerTriggerRef}
-          />
+      {/* Floating Left Sidebar Navigation */}
+      <Sidebar
+        activeTab={!fileName ? 'upload' : activeTab}
+        onTabChange={(tab) => {
+          if (tab === 'upload') {
+            handleResetFile(true);
+          } else {
+            setActiveTab(tab);
+          }
+        }}
+        isAiOpen={isAiOpen}
+        onToggleAi={() => setIsAiOpen(!isAiOpen)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+        onNavigatePrivacy={() => navigateTo('/privacy')}
+        fileName={fileName}
+        isDrawerOpen={isDrawerOpen}
+        onCloseDrawer={() => setIsDrawerOpen(false)}
+        triggerRef={drawerTriggerRef}
+      />
 
-          {/* Top Bar Header */}
-          <TopBar
-            activeTab={!fileName ? 'upload' : activeTab}
-            fileName={fileName}
-            searchQuery={filters.search}
-            onSearchChange={(val) => setFilters(prev => ({ ...prev, search: val }))}
-            isDark={isDark}
-            onToggleTheme={() => setIsDark(!isDark)}
-            onOpenBuilder={() => {
-              setEditingTile(null);
-              setIsBuilderOpen(true);
-            }}
-            onToggleAi={() => setIsAiOpen(!isAiOpen)}
-            isAiOpen={isAiOpen}
-            onExportPdf={handleExportPdf}
-            onExportPng={handleExportPng}
-            onExportCsv={handleExportCsv}
-            onResetFile={() => handleResetFile(true)}
-            isDrawerOpen={isDrawerOpen}
-            onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
-            triggerRef={drawerTriggerRef}
-          />
-        </>
-      )}
+      {/* Top Bar Header */}
+      <TopBar
+        activeTab={!fileName ? 'upload' : activeTab}
+        fileName={fileName}
+        searchQuery={filters.search}
+        onSearchChange={(val) => setFilters(prev => ({ ...prev, search: val }))}
+        isDark={isDark}
+        onToggleTheme={() => setIsDark(!isDark)}
+        onOpenBuilder={() => {
+          setEditingTile(null);
+          setIsBuilderOpen(true);
+        }}
+        onToggleAi={() => setIsAiOpen(!isAiOpen)}
+        isAiOpen={isAiOpen}
+        onExportPdf={handleExportPdf}
+        onExportPng={handleExportPng}
+        onExportCsv={handleExportCsv}
+        onResetFile={() => handleResetFile(true)}
+        isDrawerOpen={isDrawerOpen}
+        onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
+        triggerRef={drawerTriggerRef}
+      />
 
       {/* Main Content Viewport */}
-      <main className={`flex-1 w-full mx-auto pb-8 relative z-10 ${
-        isBaselineMode ? 'max-w-7xl px-4 sm:px-6 lg:px-8 py-6' : 'max-w-[1700px] px-4 sm:pl-24 lg:pl-68 sm:pr-6'
-      }`}>
+      <main className="flex-1 w-full mx-auto pb-8 relative z-10 max-w-[1700px] px-4 sm:pl-24 lg:pl-68 sm:pr-6">
         {!fileName ? (
           /* Empty / Upload View */
           <UploadDropzone onDataLoaded={handleDataLoaded} />
