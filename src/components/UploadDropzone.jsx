@@ -193,7 +193,7 @@ export default function UploadDropzone({ onDataLoaded }) {
 
         {/* Loading Overlay */}
         {isLoading && (
-          <div className="absolute inset-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-3xl flex flex-col items-center justify-center gap-3 z-20">
+          <div className="absolute inset-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-glass rounded-3xl flex flex-col items-center justify-center gap-3 z-20">
             <div className="w-10 h-10 border-4 border-metrica-600 border-t-transparent rounded-full animate-spin" />
             <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
               {loadingMsg}

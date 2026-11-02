@@ -36,7 +36,9 @@ export default {
         'glass-accent': '0 12px 36px -4px rgba(2, 111, 199, 0.35)'
       },
       backdropBlur: {
-        'glass': '16px'
+        'glass': 'var(--glass-blur, 16px)',
+        'glass-sm': '8px',
+        'glass-lg': 'var(--glass-blur, 18px)'
       }
     },
   },
