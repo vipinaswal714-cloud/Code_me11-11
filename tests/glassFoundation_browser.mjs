@@ -340,36 +340,50 @@ async function runGlassFoundationTests() {
     });
     assert.ok(activeFileName, 'Sample dataset must be loaded before testing reset');
 
-    // 10a. Cancel Path: User dismisses confirm prompt
-    page.once('dialog', async (dialog) => {
+    // 10a. Cancel Path: User dismisses confirm prompt (verify EXACTLY ONE dialog appears)
+    let dialogCountCancel = 0;
+    const countDialogHandlerCancel = async (dialog) => {
+      dialogCountCancel++;
       console.log(`  -> Handled confirmation dialog (CANCEL): "${dialog.message()}"`);
       await dialog.dismiss();
-    });
+    };
+    page.on('dialog', countDialogHandlerCancel);
+
     // Click Data in sidebar
     await page.evaluate(() => {
       const dataBtn = Array.from(document.querySelectorAll('nav button')).find(b => b.innerText.includes('Data'));
       if (dataBtn) dataBtn.click();
     });
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 400));
+    page.off('dialog', countDialogHandlerCancel);
+
+    assert.strictEqual(dialogCountCancel, 1, 'Exactly one confirmation dialog must appear when clicking Data nav item (Cancel path)');
 
     // Dataset must still be loaded
     let datasetStillLoaded = await page.evaluate(() => {
       return Boolean(document.querySelector('[title*="Global_Sales"]'));
     });
     assert.ok(datasetStillLoaded, 'Dataset must NOT be unloaded when confirm dialog is dismissed (cancelled)');
-    console.log('  ✓ Cancel path verified: Dataset was preserved on dismissal.');
+    console.log('  ✓ Cancel path verified: Exactly 1 dialog appeared and dataset was preserved on dismissal.');
 
-    // 10b. Confirm Path: User accepts confirm prompt
-    page.once('dialog', async (dialog) => {
+    // 10b. Confirm Path: User accepts confirm prompt (verify EXACTLY ONE dialog appears)
+    let dialogCountConfirm = 0;
+    const countDialogHandlerConfirm = async (dialog) => {
+      dialogCountConfirm++;
       console.log(`  -> Handled confirmation dialog (CONFIRM): "${dialog.message()}"`);
       await dialog.accept();
-    });
+    };
+    page.on('dialog', countDialogHandlerConfirm);
+
     // Click Data in sidebar again
     await page.evaluate(() => {
       const dataBtn = Array.from(document.querySelectorAll('nav button')).find(b => b.innerText.includes('Data'));
       if (dataBtn) dataBtn.click();
     });
     await new Promise(r => setTimeout(r, 400));
+    page.off('dialog', countDialogHandlerConfirm);
+
+    assert.strictEqual(dialogCountConfirm, 1, 'Exactly one confirmation dialog must appear when clicking Data nav item (Confirm path)');
 
     // Dataset must now be reset
     let datasetUnloaded = await page.evaluate(() => {

@@ -278,7 +278,8 @@ export default function App() {
   };
 
   const handleResetFile = (prompt = true) => {
-    if (prompt && fileName) {
+    const shouldPrompt = typeof prompt === 'boolean' ? prompt : true;
+    if (shouldPrompt && (fileName || rawData.length > 0)) {
       const confirmed = window.confirm('Are you sure you want to unload the current dataset? Any unsaved edits will be lost.');
       if (!confirmed) return false;
     }
@@ -369,12 +370,7 @@ export default function App() {
             activeTab={!fileName ? 'upload' : activeTab}
             onTabChange={(tab) => {
               if (tab === 'upload') {
-                if (fileName) {
-                  const confirmed = window.confirm('Are you sure you want to unload the current dataset? Any unsaved edits will be lost.');
-                  if (confirmed) {
-                    handleResetFile(false);
-                  }
-                }
+                handleResetFile(true);
               } else {
                 setActiveTab(tab);
               }
@@ -406,7 +402,7 @@ export default function App() {
             onExportPdf={handleExportPdf}
             onExportPng={handleExportPng}
             onExportCsv={handleExportCsv}
-            onResetFile={handleResetFile}
+            onResetFile={() => handleResetFile(true)}
             isDrawerOpen={isDrawerOpen}
             onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
             triggerRef={drawerTriggerRef}
