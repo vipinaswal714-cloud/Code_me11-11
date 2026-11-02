@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Search,
   Moon,
   Sun,
   Download,
@@ -33,20 +32,6 @@ export default function TopBar({
   triggerRef
 }) {
   const [showExportMenu, setShowExportMenu] = useState(false);
-  const searchInputRef = useRef(null);
-
-  // Ctrl+K / Cmd+K global shortcut handler
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault(); // Prevent browser search or URL bar override
-        searchInputRef.current?.focus();
-        searchInputRef.current?.select();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   // Map active tab to human-readable breadcrumb label
   const TAB_LABELS = {
@@ -63,7 +48,7 @@ export default function TopBar({
   const currentLabel = TAB_LABELS[activeTab] || 'Analytics Studio';
 
   return (
-    <header className="sticky top-4 z-20 mx-4 sm:ml-24 lg:ml-68 mb-6 glass-panel px-4 py-3 flex items-center justify-between gap-4">
+    <header className="sticky top-4 z-20 mx-4 sm:ml-24 lg:ml-68 mb-6 glass-panel px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
       {/* Left: Mobile Toggle & Breadcrumb */}
       <div className="flex items-center gap-3">
         {/* Mobile Hamburger Drawer Trigger */}
@@ -92,38 +77,8 @@ export default function TopBar({
         </div>
       </div>
 
-      {/* Center: Global Search Input (Connected to filters.search) */}
-      <div className="flex-1 max-w-md mx-2 hidden sm:block">
-        <div className="relative">
-          <Search className="w-4 h-4 text-glass-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          <input
-            ref={searchInputRef}
-            type="text"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search dataset (Ctrl+K)..."
-            aria-label="Search dataset"
-            className="w-full pl-9 pr-14 py-2 rounded-xl text-xs bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 text-glass-primary placeholder-glass-muted focus:outline-none focus:ring-2 focus:ring-metrica-500/40 transition-all"
-          />
-          {!searchQuery && (
-            <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono text-glass-muted bg-white/60 dark:bg-white/10 border border-glass-border rounded-md absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
-              Ctrl+K
-            </kbd>
-          )}
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => onSearchChange('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-glass-muted hover:text-glass-primary px-1.5 py-0.5 rounded"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-      </div>
-
       {/* Right Actions: File Badge, Export Menu, Theme Toggle */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:gap-2.5">
         {/* Loaded File Badge with Reset option */}
         {fileName && (
           <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 text-xs">

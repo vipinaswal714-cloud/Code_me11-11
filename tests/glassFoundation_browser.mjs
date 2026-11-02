@@ -308,24 +308,14 @@ async function runGlassFoundationTests() {
     assert.equal(storedLightWithOsDark, false, 'Stored light theme must override OS dark');
     console.log('  ✓ Stored light theme overrides OS dark preference.');
 
-    // 9. CTRL+K SHORTCUT INTERACTION (Item 6)
-    console.log('\n[TEST 9] Testing Ctrl+K / Cmd+K global search focus shortcut...');
+    // 9. VERIFY TOP HEADER SEARCH BAR REMOVED
+    console.log('\n[TEST 9] Verifying top-header search bar and shortcut hint are removed...');
     await page.setViewport({ width: 1440, height: 900 });
-    // Click body to blur active elements
-    await page.evaluate(() => document.body.click());
-    
-    // Press Ctrl+K
-    await page.keyboard.down('Control');
-    await page.keyboard.press('k');
-    await page.keyboard.up('Control');
-    await new Promise(r => setTimeout(r, 200));
-
-    const isSearchFocused = await page.evaluate(() => {
-      const searchInput = document.querySelector('input[aria-label="Search dataset"]');
-      return document.activeElement === searchInput;
+    const headerSearchExists = await page.evaluate(() => {
+      return !!document.querySelector('header input[aria-label="Search dataset"]');
     });
-    assert.ok(isSearchFocused, 'Ctrl+K shortcut must focus the dataset search input');
-    console.log('  ✓ Ctrl+K successfully focused dataset search input without conflict.');
+    assert.strictEqual(headerSearchExists, false, 'Top header search bar must be removed');
+    console.log('  ✓ Verified top-header search bar and shortcut hint are cleanly removed.');
 
     // 10. HANDLE RESET FILE CONFIRM & CANCEL PATHS (Item 4)
     console.log('\n[TEST 10] Testing handleResetFile cancel and confirm paths...');
