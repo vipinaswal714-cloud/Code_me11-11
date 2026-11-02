@@ -1,0 +1,11 @@
+Region,Product,Sales,Date,Status
+North,Electronics,4500,2025-01-15,Active
+South,Clothing,1200,2025-02-10,Pending
+East,Home & Garden,3100,2025-03-05,Active
+West,Electronics,6800,2025-04-12,Active
+Central,Automotive,2400,2025-05-20,Completed
+North,Toys,850,2025-06-01,Active
+South,Electronics,5200,2025-07-18,Completed
+East,Clothing,1950,2025-08-22,Active
+West,Home & Garden,4100,2025-09-14,Active
+Central,Electronics,7300,2025-10-30,Active

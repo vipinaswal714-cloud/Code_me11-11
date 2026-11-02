@@ -1,0 +1,10 @@
+{
+  "buttonCount": 46,
+  "headingCount": 0,
+  "landmarks": {
+    "hasNav": true,
+    "hasMain": true,
+    "hasFooter": true
+  },
+  "hasInteractiveWithoutAria": 30
+}

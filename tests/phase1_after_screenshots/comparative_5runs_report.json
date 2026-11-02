@@ -1,0 +1,85 @@
+{
+  "baselineResults": {
+    "label": "PRE-RESTYLE BASELINE (Navbar, Flat UI)",
+    "scrollResults": [
+      {
+        "avgDeltaMs": 42.3,
+        "avgFps": 24,
+        "jankFrames": 5
+      },
+      {
+        "avgDeltaMs": 16.2,
+        "avgFps": 62,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16.2,
+        "avgFps": 62,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16.4,
+        "avgFps": 61,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16.3,
+        "avgFps": 61,
+        "jankFrames": 0
+      }
+    ],
+    "switchResults": [
+      2902,
+      2463,
+      2409,
+      3169,
+      2761
+    ],
+    "medianScrollFps": 61,
+    "medianScrollDelta": 16.3,
+    "medianJank": 0,
+    "medianSwitch": 2761
+  },
+  "glassResults": {
+    "label": "CURRENT GLASS UI (Sidebar, TopBar, Glass Backdrop)",
+    "scrollResults": [
+      {
+        "avgDeltaMs": 42.2,
+        "avgFps": 24,
+        "jankFrames": 5
+      },
+      {
+        "avgDeltaMs": 16.5,
+        "avgFps": 61,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16,
+        "avgFps": 63,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16.2,
+        "avgFps": 62,
+        "jankFrames": 0
+      },
+      {
+        "avgDeltaMs": 16.4,
+        "avgFps": 61,
+        "jankFrames": 0
+      }
+    ],
+    "switchResults": [
+      2838,
+      3130,
+      2894,
+      2484,
+      2689
+    ],
+    "medianScrollFps": 61,
+    "medianScrollDelta": 16.4,
+    "medianJank": 0,
+    "medianSwitch": 2838
+  },
+  "switchDeltaPercent": 2.788844621513944
+}
