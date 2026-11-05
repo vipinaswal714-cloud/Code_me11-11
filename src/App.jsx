@@ -16,6 +16,8 @@ import DatasetSummaryView from './components/DatasetSummaryView';
 import DataQualityReport from './components/DataQualityReport';
 import BusinessInsightsView from './components/BusinessInsightsView';
 import PrivacyNoticePage from './components/PrivacyNoticePage';
+import HomePage from './components/HomePage';
+import SignInPage from './components/SignInPage';
 import Footer from './components/Footer';
 import { generateStarterDashboard } from './utils/autoDashboard';
 import { applyGlobalFilters } from './utils/analyticsEngine';
@@ -68,6 +70,8 @@ export default function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  const openStudio = () => navigateTo('/studio');
 
   // Dataset states
   const [fileName, setFileName] = useState('');
@@ -318,6 +322,28 @@ export default function App() {
     return (
       <PrivacyNoticePage
         onBack={() => navigateTo('/')}
+        isDark={isDark}
+        onToggleTheme={() => setIsDark(!isDark)}
+      />
+    );
+  }
+
+  if (currentPath === '/login') {
+    return (
+      <SignInPage
+        onBack={() => navigateTo('/')}
+        onAuthenticated={openStudio}
+        onContinueAsGuest={openStudio}
+      />
+    );
+  }
+
+  if (currentPath === '/') {
+    return (
+      <HomePage
+        onSignIn={() => navigateTo('/login')}
+        onContinueAsGuest={openStudio}
+        onNavigatePrivacy={() => navigateTo('/privacy')}
         isDark={isDark}
         onToggleTheme={() => setIsDark(!isDark)}
       />
