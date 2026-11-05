@@ -264,6 +264,7 @@ export async function checkSupabaseLive(url, publishableKey, fetchImpl = fetch) 
   // 1. Project Auth Health check
   try {
     const healthRes = await fetchImpl(`${cleanUrl}/auth/v1/health`, {
+      headers: cleanKey ? { apikey: cleanKey } : {},
       signal: AbortSignal.timeout(6000)
     });
     statusCode = healthRes.status;
