@@ -22,6 +22,28 @@ Metrica is a lightweight, high-performance browser spreadsheet analytics studio 
 
 ---
 
+## Secrets and Git
+
+Metrica employs strict repository-level safeguards to ensure confidential credentials and local environment files can never be committed or pushed:
+
+- **Where Keys Belong:**
+  - **Frontend Credentials:** Placed strictly in `.env.local` (root). Only public keys (`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`) belong here.
+  - **Backend Credentials:** Placed strictly in `server/.env`. Private keys like `GEMINI_API_KEY` belong exclusively on the backend server.
+- **Real Keys Are Never Committed:** All `.env*` files, certificates, private keys, service account JSON files, and database backups are blocked by `.gitignore`.
+- **Placeholder Templates Only:** `.env.example` and `server/.env.example` are tracked in Git and must contain only non-secret placeholders (e.g., `your_gemini_api_key_here`).
+- **Secret Scanning & Pre-commit Hook:**
+  - Run the secret scanner manually at any time:
+    ```bash
+    npm run check:secrets
+    ```
+  - Metrica includes an automated Git pre-commit hook in `.githooks/pre-commit` that validates staged files and blocks commits if sensitive filenames or secret tokens are detected.
+  - Enable repository hooks in your local Git configuration:
+    ```bash
+    git config core.hooksPath .githooks
+    ```
+
+---
+
 ## Getting Started
 
 ### 1. Prerequisites

@@ -8,6 +8,7 @@
     "build": "node scripts/checkPlaceholders.js --strict && vite build",
     "build:dev": "node scripts/checkPlaceholders.js && vite build",
     "check:placeholders": "node scripts/checkPlaceholders.js",
+    "check:secrets": "node scripts/check-secrets.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "proxy": "node server/proxy.js",
