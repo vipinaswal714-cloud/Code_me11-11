@@ -22,6 +22,7 @@ export default function Sidebar({
   onToggleAi,
   onOpenSettings,
   onNavigatePrivacy,
+  onNavigateHome,
   fileName,
   isDrawerOpen,
   onCloseDrawer,
@@ -104,8 +105,8 @@ export default function Sidebar({
     },
     {
       id: 'cleaning',
-      label: 'Cleaning',
-      sublabel: 'Data hygiene',
+      label: 'Clean',
+      sublabel: 'Fix & sanitize',
       icon: Sparkles,
       action: () => {
         onTabChange('cleaning');
@@ -117,7 +118,7 @@ export default function Sidebar({
     {
       id: 'table',
       label: 'Data Table',
-      sublabel: 'Explore rows',
+      sublabel: 'Raw records',
       icon: Table,
       action: () => {
         onTabChange('table');
@@ -177,15 +178,13 @@ export default function Sidebar({
 
       const handleKeyDown = (e) => {
         if (e.key === 'Escape') {
-          e.preventDefault();
           onCloseDrawer();
-          // Return focus to the trigger button
           triggerRef?.current?.focus();
         }
       };
 
-      window.addEventListener('keydown', handleKeyDown);
-      return () => window.removeEventListener('keydown', handleKeyDown);
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
     }
   }, [isDrawerOpen, onCloseDrawer, triggerRef]);
 
@@ -195,7 +194,16 @@ export default function Sidebar({
       {/* Brand Header */}
       <div className="space-y-4">
         <div className="flex items-center justify-between px-2">
-          <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              if (onNavigateHome) onNavigateHome();
+              if (isMobile) onCloseDrawer();
+            }}
+            className="flex items-center gap-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-metrica-500 rounded-xl"
+            aria-label="Back to Metrica Home"
+            title="Back to Metrica Home"
+          >
             <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-metrica-600 via-metrica-500 to-cyan-400 text-white flex items-center justify-center font-black text-base shadow-md shadow-metrica-500/20">
               M
             </div>
@@ -207,7 +215,7 @@ export default function Sidebar({
                 Analytics Studio
               </p>
             </div>
-          </div>
+          </button>
 
           {isMobile && (
             <button
@@ -320,7 +328,7 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Desktop / Tablet Sidebar (Fixed Left Rail) */}
+      {/* Desktop / Tablet Sidebar (Fixed Rail) */}
       <aside
         aria-label="Main Navigation"
         className="hidden sm:flex flex-col fixed top-4 left-4 bottom-4 z-30 w-16 lg:w-60 glass-panel shadow-glass overflow-hidden"

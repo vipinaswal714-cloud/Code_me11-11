@@ -10,7 +10,10 @@ import {
   ChevronDown,
   RotateCcw,
   Plus,
-  Sparkles
+  Sparkles,
+  Home,
+  LogOut,
+  User
 } from 'lucide-react';
 
 export default function TopBar({
@@ -29,7 +32,11 @@ export default function TopBar({
   onResetFile,
   isDrawerOpen,
   onToggleDrawer,
-  triggerRef
+  triggerRef,
+  onNavigateHome,
+  onNavigateLogin,
+  session,
+  onSignOut
 }) {
   const [showExportMenu, setShowExportMenu] = useState(false);
 
@@ -79,6 +86,19 @@ export default function TopBar({
 
       {/* Right Actions: File Badge, Export Menu, Theme Toggle */}
       <div className="flex items-center gap-2 sm:gap-2.5">
+        {/* Navigation back to Home */}
+        {onNavigateHome && (
+          <button
+            type="button"
+            onClick={onNavigateHome}
+            aria-label="Back to Home"
+            title="Back to Home"
+            className="p-2.5 rounded-xl glass-button text-glass-secondary hover:text-glass-primary transition-colors"
+          >
+            <Home className="w-4 h-4" />
+          </button>
+        )}
+
         {/* Loaded File Badge with Reset option */}
         {fileName && (
           <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 text-xs">
@@ -99,7 +119,7 @@ export default function TopBar({
           </div>
         )}
 
-        {/* Ask AI Button (restored entry point from old Navbar) */}
+        {/* Ask AI Button */}
         {fileName && onToggleAi && (
           <button
             type="button"
@@ -116,7 +136,7 @@ export default function TopBar({
           </button>
         )}
 
-        {/* + Add Chart Button (restored entry point from old Navbar) */}
+        {/* + Add Chart Button */}
         {fileName && onOpenBuilder && (
           <button
             type="button"
@@ -184,6 +204,38 @@ export default function TopBar({
             )}
           </div>
         )}
+
+        {/* Auth Account / Sign-in */}
+        {session?.user ? (
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl glass-card text-xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span
+              className="hidden lg:inline font-semibold text-glass-primary max-w-[120px] truncate"
+              title={session.user.email}
+            >
+              {session.user.email?.split('@')[0]}
+            </span>
+            {onSignOut && (
+              <button
+                type="button"
+                onClick={onSignOut}
+                aria-label="Sign out"
+                title="Sign out of Metrica"
+                className="p-1 rounded-lg text-glass-muted hover:text-red-500 transition-colors"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        ) : onNavigateLogin ? (
+          <button
+            type="button"
+            onClick={onNavigateLogin}
+            className="px-3 py-2 rounded-xl glass-button text-xs font-semibold text-glass-secondary hover:text-glass-primary transition-colors"
+          >
+            Sign in
+          </button>
+        ) : null}
 
         {/* Theme Toggle (Dark / Light) */}
         <button

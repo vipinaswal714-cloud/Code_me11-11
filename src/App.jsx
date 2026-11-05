@@ -24,6 +24,7 @@ import { applyGlobalFilters } from './utils/analyticsEngine';
 import { evaluateNode, validateRuleSchema, formatRuleAsSentence } from './utils/ruleEvaluator';
 import { exportDashboardAsPdf, exportDashboardAsPng, exportCleanedDataAsCsv } from './utils/exportUtils';
 import { purgeObsoleteProviderSettings } from './utils/aiClient';
+import { getSupabaseConfig, getSupabase } from './lib/supabaseClient';
 
 export default function App() {
   // Theme state
@@ -47,7 +48,7 @@ export default function App() {
     purgeObsoleteProviderSettings();
   }, []);
 
-  // Lightweight SPA Routing State (supports direct /privacy visits & page reloads)
+  // Lightweight SPA Routing State (supports direct /privacy, /login, /studio visits & page reloads)
   const [currentPath, setCurrentPath] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.location.pathname;
@@ -72,6 +73,41 @@ export default function App() {
   };
 
   const openStudio = () => navigateTo('/studio');
+
+  // Supabase Auth session state
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    try {
+      const config = getSupabaseConfig();
+      if (!config.isConfigured) return;
+      const supabase = getSupabase();
+      supabase.auth.getSession().then(({ data }) => {
+        if (data?.session) setSession(data.session);
+      }).catch(() => {});
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, newSession) => {
+        setSession(newSession);
+      });
+
+      return () => {
+        subscription?.unsubscribe();
+      };
+    } catch {
+      // Safe fallback for unconfigured / guest mode
+    }
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      const supabase = getSupabase();
+      await supabase.auth.signOut();
+    } catch {
+      // ignore
+    }
+    setSession(null);
+    navigateTo('/');
+  };
 
   // Dataset states
   const [fileName, setFileName] = useState('');
@@ -198,93 +234,28 @@ export default function App() {
 
     setColumns(colProfiles);
     setSummary({
-      totalRows: cleanedRows.length,
-      totalCols: colKeys.length,
-      missingValues: totalMissing,
+      rowCount: cleanedRows.length,
+      colCount: colProfiles.length,
+      missingCount: totalMissing,
       duplicateCount: dupCount,
-      columnProfiles: colProfiles
+      memoryEstimate: `${Math.round(JSON.stringify(cleanedRows).length / 1024)} KB`
     });
   };
 
+  // Reset to original dataset (undo all cleaning steps)
   const handleResetOriginal = () => {
-    if (originalData.length === 0) return;
-    handleApplyCleanedData(originalData, 'Reverted to original data.');
-  };
-
-  // Filtered dataset for dashboard & charts
-  const filteredData = useMemo(() => {
-    const baseFiltered = applyGlobalFilters(rawData, filters, columns);
-    if (activeRuleFilter?.rule) {
-      return baseFiltered.filter(row => evaluateNode(activeRuleFilter.rule, row));
+    if (originalData.length > 0) {
+      handleApplyCleanedData([...originalData], 'Reverted to initial uncleaned dataset.');
     }
-    return baseFiltered;
-  }, [rawData, filters, columns, activeRuleFilter]);
-
-  // Tile Management
-  const handleUpdateTileWidth = (tileId, newWidth) => {
-    setTiles(prev =>
-      prev.map(t => (t.id === tileId ? { ...t, w: newWidth } : t))
-    );
   };
 
-  const handleMoveTile = (tileId, direction) => {
-    setTiles(prev => {
-      const idx = prev.findIndex(t => t.id === tileId);
-      if (idx === -1) return prev;
-      const targetIdx = idx + direction;
-      if (targetIdx < 0 || targetIdx >= prev.length) return prev;
-
-      const updated = [...prev];
-      const [moved] = updated.splice(idx, 1);
-      updated.splice(targetIdx, 0, moved);
-      return updated;
-    });
-  };
-
-  const handleDeleteTile = (tileId) => {
-    setTiles(prev => prev.filter(t => t.id !== tileId));
-  };
-
-  const handleEditTile = (tile) => {
-    setEditingTile(tile);
-    setIsBuilderOpen(true);
-  };
-
-  const handleSaveTileFromBuilder = (newOrUpdatedTile) => {
-    setTiles(prev => {
-      const exists = prev.some(t => t.id === newOrUpdatedTile.id);
-      if (exists) {
-        return prev.map(t => (t.id === newOrUpdatedTile.id ? newOrUpdatedTile : t));
-      }
-      return [...prev, newOrUpdatedTile];
-    });
-    setEditingTile(null);
-  };
-
-  const handleAddTileFromAi = (aiTile) => {
-    setTiles(prev => [...prev, aiTile]);
-  };
-
-  // Exports
-  const handleExportPdf = () => {
-    if (!dashboardRef.current) return;
-    exportDashboardAsPdf(dashboardRef.current, `Metrica Analytics Report - ${fileName}`);
-  };
-
-  const handleExportPng = () => {
-    if (!dashboardRef.current) return;
-    exportDashboardAsPng(dashboardRef.current, fileName.replace(/\.[^/.]+$/, ''));
-  };
-
-  const handleExportCsv = () => {
-    exportCleanedDataAsCsv(rawData, fileName.replace(/\.[^/.]+$/, ''));
-  };
-
-  const handleResetFile = (prompt = true) => {
-    const shouldPrompt = typeof prompt === 'boolean' ? prompt : true;
-    if (shouldPrompt && (fileName || rawData.length > 0)) {
-      const confirmed = window.confirm('Are you sure you want to unload the current dataset? Any unsaved edits will be lost.');
-      if (!confirmed) return false;
+  // Completely reset file / upload new
+  const handleResetFile = (promptConfirm = false) => {
+    if (promptConfirm && fileName) {
+      const confirmed = window.confirm(
+        `Are you sure you want to unload "${fileName}" and return to the file upload screen? Any unsaved edits will be cleared.`
+      );
+      if (!confirmed) return;
     }
     setFileName('');
     setRawData([]);
@@ -292,26 +263,116 @@ export default function App() {
     setColumns([]);
     setSummary(null);
     setTiles([]);
+    setEditingTile(null);
     setActiveRuleFilter(null);
     setTableHighlightRule(null);
     setUserRoleOverrides({});
-    return true;
+    setActiveTab('dashboard');
   };
 
-  const handleUpdateRoleOverride = (colName, newRole) => {
+  // Tile management
+  const handleSaveTileFromBuilder = (newTile) => {
+    if (editingTile) {
+      setTiles(tiles.map(t => t.id === newTile.id ? newTile : t));
+    } else {
+      setTiles([...tiles, newTile]);
+    }
+    setEditingTile(null);
+    setIsBuilderOpen(false);
+  };
+
+  const handleEditTile = (tile) => {
+    setEditingTile(tile);
+    setIsBuilderOpen(true);
+  };
+
+  const handleDeleteTile = (tileId) => {
+    setTiles(tiles.filter(t => t.id !== tileId));
+  };
+
+  const handleUpdateTileWidth = (tileId, newWidth) => {
+    setTiles(tiles.map(t => t.id === tileId ? { ...t, width: newWidth } : t));
+  };
+
+  const handleMoveTile = (tileId, direction) => {
+    const index = tiles.findIndex(t => t.id === tileId);
+    if (index === -1) return;
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= tiles.length) return;
+
+    const updated = [...tiles];
+    const [moved] = updated.splice(index, 1);
+    updated.splice(targetIndex, 0, moved);
+    setTiles(updated);
+  };
+
+  // Add chart generated from AI or condition suggestions
+  const handleAddTileFromAi = (chartConfig) => {
+    const tile = {
+      id: `tile-ai-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+      title: chartConfig.title || 'AI Chart',
+      type: chartConfig.type || 'bar',
+      xAxis: chartConfig.xAxis || (columns[0]?.name || ''),
+      yAxis: chartConfig.yAxis || (columns.find(c => c.type === 'number')?.name || ''),
+      aggregation: chartConfig.aggregation || 'sum',
+      width: 'half'
+    };
+    setTiles(prev => [tile, ...prev]);
+    setActiveTab('dashboard');
+  };
+
+  // Smart Schema overrides updater
+  const handleUpdateRoleOverride = (columnName, newRole) => {
     setUserRoleOverrides(prev => ({
       ...prev,
-      [colName]: newRole
+      [columnName]: newRole
     }));
   };
 
-  // Handler for adding calculated column from Conditions Panel
-  const handleApplyCalculatedColumn = (newDataset, newColName) => {
-    let nextColumns = columns;
-    if (!columns.some(c => c.name === newColName)) {
-      const sampleVal = newDataset[0]?.[newColName];
-      const colType = typeof sampleVal === 'number' ? 'number' : 'category';
-      nextColumns = [...columns, { name: newColName, type: colType }];
+  // Filtered dataset computed from global filters and active condition rule
+  const filteredData = useMemo(() => {
+    if (!rawData || rawData.length === 0) return [];
+
+    let dataset = applyGlobalFilters(rawData, filters);
+
+    if (activeRuleFilter && activeRuleFilter.rule) {
+      dataset = dataset.filter(row => evaluateNode(activeRuleFilter.rule, row));
+    }
+
+    return dataset;
+  }, [rawData, filters, activeRuleFilter]);
+
+  // Exports
+  const handleExportPdf = () => {
+    if (dashboardRef.current) {
+      exportDashboardAsPdf(dashboardRef.current, fileName || 'Metrica_Dashboard');
+    }
+  };
+
+  const handleExportPng = () => {
+    if (dashboardRef.current) {
+      exportDashboardAsPng(dashboardRef.current, fileName || 'Metrica_Dashboard');
+    }
+  };
+
+  const handleExportCsv = () => {
+    if (filteredData.length > 0) {
+      exportCleanedDataAsCsv(filteredData, columns, fileName || 'Metrica_Export');
+    }
+  };
+
+  // Calculated Column Handler
+  const handleApplyCalculatedColumn = (newColName, newDataset, targetType = 'string') => {
+    const existingCol = columns.find(c => c.name === newColName);
+    let nextColumns = [...columns];
+    if (!existingCol) {
+      nextColumns.push({
+        name: newColName,
+        type: targetType,
+        nullCount: 0,
+        uniqueCount: 0,
+        isCalculated: true
+      });
     }
     // Re-profile with newly added column
     handleApplyCleanedData(newDataset, `Generated calculated column "${newColName}".`, nextColumns);
@@ -328,16 +389,19 @@ export default function App() {
     );
   }
 
+  // Route: /login
   if (currentPath === '/login') {
     return (
       <SignInPage
         onBack={() => navigateTo('/')}
         onAuthenticated={openStudio}
         onContinueAsGuest={openStudio}
+        onNavigatePrivacy={() => navigateTo('/privacy')}
       />
     );
   }
 
+  // Route: / (Home Page)
   if (currentPath === '/') {
     return (
       <HomePage
@@ -350,6 +414,7 @@ export default function App() {
     );
   }
 
+  // Route: /studio (and active Studio fallback)
   return (
     <div className="min-h-screen flex flex-col relative transition-colors selection:bg-metrica-500 selection:text-white text-glass-primary">
       {/* Pure CSS Ambient Glass Backdrop */}
@@ -373,6 +438,7 @@ export default function App() {
         onToggleAi={() => setIsAiOpen(!isAiOpen)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onNavigatePrivacy={() => navigateTo('/privacy')}
+        onNavigateHome={() => navigateTo('/')}
         fileName={fileName}
         isDrawerOpen={isDrawerOpen}
         onCloseDrawer={() => setIsDrawerOpen(false)}
@@ -400,6 +466,10 @@ export default function App() {
         isDrawerOpen={isDrawerOpen}
         onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
         triggerRef={drawerTriggerRef}
+        onNavigateHome={() => navigateTo('/')}
+        onNavigateLogin={() => navigateTo('/login')}
+        session={session}
+        onSignOut={handleSignOut}
       />
 
       {/* Main Content Viewport */}
