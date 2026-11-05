@@ -7,32 +7,72 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Build and dependencies
+node_modules/
+dist/
+dist-ssr/
+coverage/
 *.local
 
-# Environment files
+# Environment files (anywhere in the project)
 .env
 .env.*
+**/.env
+**/.env.*
 .env.local
 .env.*.local
-!.env.example
+.envrc
+.dev.vars
+.dev.vars.*
 server/.env
 server/.env.*
+# Explicit exceptions to keep example templates tracked (placed after override patterns)
+!.env.example
+!**/.env.example
 !server/.env.example
 
-# Editor directories and files
-.supabase-agent-skills-source/
+# Supabase local files (migrations and config.toml remain tracked)
+supabase/.temp/
+supabase/.branches/
+supabase/**/.env*
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+*.secret
+secrets/
+credentials.json
+service-account*.json
+serviceAccountKey.json
+
+# Hosting and tool folders
+.vercel/
+.netlify/
+.wrangler/
+.cloudflared/
 .agent/
 .agents/
 .gemini/
+.supabase-agent-skills-source/
+
+# Editor directories, OS junk, and local files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Local data dumps and backups (do NOT blanket-ignore *.csv, *.xlsx, *.sql)
+*.dump
+*.backup
+*.sqlite
+*.db
+private-data/
