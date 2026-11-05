@@ -105,8 +105,8 @@ export function scanFileContent(filepath, content) {
   if (isAllowedFilename(filepath)) return [];
 
   const normalized = filepath.replace(/\\/g, '/');
-  // The scanner script itself defines the detection regex patterns
-  if (normalized.endsWith('scripts/check-secrets.mjs')) {
+  // The scanner scripts define the detection regex patterns
+  if (normalized.endsWith('scripts/check-secrets.mjs') || normalized.endsWith('scripts/check-keys.mjs')) {
     return [];
   }
 
