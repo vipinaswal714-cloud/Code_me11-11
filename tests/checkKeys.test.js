@@ -20,12 +20,16 @@ import {
 } from '../scripts/check-keys.mjs';
 
 test('Check-Keys: Gemini Key & Model Validation', async (t) => {
-  await t.test('detects well-formed Google AIza key format', () => {
+  await t.test('detects well-formed Google AIza and AQ. key format', () => {
     // Built in pieces to prevent scanner alerts
     const fakeKey = 'AIza' + 'SyB1234567890abcdefghijklmnopqrstuvwxyz';
     const res = validateGeminiKeyFormat(fakeKey);
     assert.strictEqual(res.valid, true);
     assert.strictEqual(res.isPlaceholder, false);
+
+    const fakeAqKey = 'AQ.' + 'Ab8RN6KjWfesb8V-lcmgPqCFFxaEpxBieRH0G587UleFXF10dA';
+    const resAq = validateGeminiKeyFormat(fakeAqKey);
+    assert.strictEqual(resAq.valid, true);
   });
 
   await t.test('flags default placeholders as invalid/placeholder', () => {
@@ -48,6 +52,7 @@ test('Check-Keys: Supabase Key Shapes & Token Role Decoder', async (t) => {
   await t.test('validates Supabase project URL shape', () => {
     assert.strictEqual(validateSupabaseUrl('https://sqyzsxzplfdmovqkecco.supabase.co'), true);
     assert.strictEqual(validateSupabaseUrl('https://my-custom.domain.com'), true);
+    assert.strictEqual(validateSupabaseUrl('https://your-project-id.supabase.co'), false);
     assert.strictEqual(validateSupabaseUrl('http://insecure.supabase.co'), false);
     assert.strictEqual(validateSupabaseUrl('not-a-url'), false);
     assert.strictEqual(validateSupabaseUrl(''), false);

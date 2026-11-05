@@ -52,9 +52,9 @@ export function validateGeminiKeyFormat(key) {
   if (placeholders.includes(clean.toLowerCase())) {
     return { valid: false, isPlaceholder: true };
   }
-  // Google AI Studio keys typically start with AIza and are 38-44 characters
-  const isAiza = clean.startsWith('AIza') && clean.length >= 38 && clean.length <= 44;
-  return { valid: isAiza, isPlaceholder: false };
+  // Google AI Studio / Gemini API keys typically start with AIza or AQ. and are 35-65 characters
+  const isGoogleKey = (clean.startsWith('AIza') || clean.startsWith('AQ.')) && clean.length >= 35 && clean.length <= 65;
+  return { valid: isGoogleKey, isPlaceholder: false };
 }
 
 export function isAllowedGeminiModel(model) {
@@ -64,6 +64,7 @@ export function isAllowedGeminiModel(model) {
 
 export function validateSupabaseUrl(url) {
   if (!url || typeof url !== 'string') return false;
+  if (/your-project|placeholder|example\.com/i.test(url)) return false;
   try {
     const parsed = new URL(url.trim());
     return parsed.protocol === 'https:' && parsed.hostname.length > 3;
@@ -263,6 +264,7 @@ export async function checkSupabaseLive(url, publishableKey, fetchImpl = fetch) 
   // 1. Project Auth Health check
   try {
     const healthRes = await fetchImpl(`${cleanUrl}/auth/v1/health`, {
+      headers: cleanKey ? { apikey: cleanKey } : {},
       signal: AbortSignal.timeout(6000)
     });
     statusCode = healthRes.status;
