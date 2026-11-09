@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 
@@ -684,6 +685,7 @@ export default function App() {
           setIsAiOpen(false);
         }}
       />
+      <Analytics />
     </div>
   );
 }
