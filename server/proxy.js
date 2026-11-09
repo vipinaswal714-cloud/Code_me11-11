@@ -26,6 +26,7 @@ import {
   checkGeminiHealth,
   mapGeminiError
 } from './geminiProvider.js';
+import { deleteAuthenticatedSupabaseUser } from './accountDeletion.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -257,6 +258,30 @@ const server = http.createServer(async (req, res) => {
   }
 
   const urlPath = req.url?.split('?')[0];
+
+  // Route: POST /api/account/delete
+  if (urlPath === '/api/account/delete') {
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return sendJson(res, 405, { error: 'Method not allowed.' }, corsHeaders);
+    }
+
+    try {
+      await readRequestBody(req);
+      const result = await deleteAuthenticatedSupabaseUser({
+        authorization: req.headers.authorization,
+        supabaseUrl: process.env.SUPABASE_URL,
+        secretKey: process.env.SUPABASE_SECRET_KEY
+      });
+
+      if (result.deleted) {
+        return sendJson(res, 200, { deleted: true }, corsHeaders);
+      }
+      return sendJson(res, result.status, { error: result.error }, corsHeaders);
+    } catch (err) {
+      return sendJson(res, err.statusCode || 400, { error: err.statusCode === 413 ? err.message : 'Invalid request.' }, corsHeaders);
+    }
+  }
 
   // Route: GET /api/health
   if (req.method === 'GET' && urlPath === '/api/health') {

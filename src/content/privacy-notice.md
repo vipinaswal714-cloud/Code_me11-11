@@ -1,117 +1,97 @@
 # Metrica Privacy Notice
 
-**Last updated:** [date]  
-**Operated by:** [your name or business name], [country]  
-**Contact:** [your email address]
+**Last updated:** November 9, 2026
+**Operated by:** Aswal Analytics Services, India
+**Brand:** Metrica
+**Privacy contact:** [Vipinaswal720@gmail.com](mailto:Vipinaswal720@gmail.com)
 
-> Draft for review: replace everything in [square brackets], delete any section for a feature that is not live yet, and have the final text checked by a legal professional before publishing.
+This notice explains what the current Metrica website does with information. It is a practical description of the app, not legal advice. Aswal Analytics Services does not claim ownership of datasets that users upload.
 
-## 1. The short version
+## 1. At a glance
 
-- Your spreadsheet is processed **in your browser**. Metrica does not upload your file to its servers or store it.
+- CSV and Excel files are read and analyzed in your browser. The app does not upload or save the full file to the Metrica or Supabase database.
+- If you choose Ask AI, the app sends your question, dataset summary, column information, and up to 20 real sample rows to the Metrica server, which forwards that information to Google Gemini.
+- Metrica is configured to use the Gemini API free or unpaid tier. Google says it may use prompts and responses to improve its services and that authorized human reviewers may review them. Do not send personal, sensitive, confidential, or health information to Ask AI.
+- Supabase is used for account sign-in. The configured Supabase project is in West EU (Ireland). Metrica does not currently save datasets, dashboards, or rules to Supabase.
+- You can delete your Metrica sign-in account from the Profile page after signing in.
 
-- If you use **Ask AI**, a limited summary of your data is sent through our server to **Google Gemini** to produce an answer (details in section 3). Your full file is never sent.
+## 2. Your uploaded datasets
 
-- If you create an **account**, we store your email address and the rules, dashboard settings and preferences you choose to save. We do not store your spreadsheets.
+You choose which file to upload and are responsible for having the authority to use it. Metrica reads the file in your browser to create summaries, charts, filters, data-quality results, cleaning actions, conditions, and exports. The app does not send the full spreadsheet to its server or store it in Supabase. Dataset contents are held in browser memory while you use the app. Saved conditions and some preferences are stored in your browser's local storage, not in your Metrica account.
 
-- We do not sell your data and we do not show advertising.
+Aswal Analytics Services does not claim ownership of your dataset and does not intentionally review or use the full uploaded file for its own independent business purposes. You control whether to upload a file and whether to use Ask AI. The service operator does configure and operate the website and its service providers, so it would be inaccurate to say the operator has no control over the data-processing pathway.
 
-## 2. What stays in your browser
+Only upload information you are permitted to process. MeitY's Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 describe sensitive categories including passwords, financial information, health or medical records, sexual orientation, and biometrics. Take special care with such information. See the [official MeitY rules](https://www.meity.gov.in/sites/upload_files/dit/files/GSR313E_10511%281%29.pdf).
 
-When you upload an Excel or CSV file, Metrica reads it on your device. Summaries, charts, filters, data cleaning, conditions and exports all run locally. Your theme choice and similar preferences are kept in your browser storage. Clearing your browser data removes them.
+## 3. Ask AI and Google Gemini
 
-## 3. Ask AI
+When you submit a question to Ask AI, Metrica sends the following from your browser to its server and then to Google Gemini:
 
-When you use Ask AI, Metrica sends the following to our server, which forwards it to Google's Gemini API:
+- your question;
+- dataset row and column counts and summary statistics;
+- column names, detected types, and related summary values; and
+- up to 20 real rows from the beginning of the dataset.
 
-- your question,
+The full file is not sent, but those sample rows may contain identifying information. The app owner operates the server and supplies the Gemini API connection; the server does not intentionally save the prompt or sample rows in the Metrica database.
 
-- the column names and data types,
+Metrica currently uses the Gemini API free or unpaid tier. Under Google's current [Gemini API terms](https://ai.google.dev/gemini-api/terms), Google may use content submitted to unpaid services and generated responses to provide, improve, and develop Google products and services. Authorized human reviewers may read, annotate, and process that content. Google specifically says not to submit sensitive, confidential, or personal information to unpaid services. Do not use Ask AI with personal, sensitive, confidential, or health data. This means Metrica cannot promise that Gemini does not retain or review submitted data.
 
-- summary statistics calculated from your data, and
+If you do not want this transfer, do not use Ask AI for that dataset. AI-generated explanations can be inaccurate; confirm important conclusions against the data and Metrica's calculations.
 
-- a sample of up to 20 rows.
+## 4. Accounts and Supabase
 
-Your full file is not sent. **The sample rows are real rows from your file**, so if your data contains personal or sensitive information (for example customer, health or financial details), do not use Ask AI with it, or remove those columns first.
+Signing in is optional. If you create an account, Supabase Authentication processes your email address and authentication/session information to create and maintain your sign-in. Supabase handles passwords through its authentication service; Metrica does not receive your password in readable form.
 
-Google processes this information under its own terms and privacy policy: [link to Google's current terms for the Gemini API plan you use, and state whether you use a free or paid plan, because the terms can differ]. [We do not store your questions or data samples on our servers. Our server keeps only short-term technical logs, described in section 5.]
+The configured project region is **West EU (Ireland), eu-west-1**. Supabase says the selected region hosts the project's primary database, Auth service, Storage objects, and backups, but some account, support, telemetry, and operational processing may occur outside that region. Region selection alone is not a guarantee of legal compliance or that every processing activity stays in Ireland. See [Supabase's region information](https://supabase.com/docs/guides/platform/regions) and [data residency FAQ](https://supabase.com/legal/privacy-resources/data-residency-and-transfers-faq).
 
-AI answers can be wrong. Numbers shown in Metrica are calculated by the app, and any rule or chart suggested by the AI is applied only after you confirm it.
+The current Metrica app uses Supabase for Auth only. It does not currently save uploaded datasets, dashboards, or IF/ELSE rules in Supabase. Browser-local settings and saved rules are not deleted by deleting your Supabase account; clear the browser's site data if you also want to remove those local items.
 
-## 4. Accounts and saved data
+## 5. Account deletion
 
-You can use Metrica for basic analysis without an account. If you create one, we use Supabase to provide sign-in and storage. We store:
+After signing in, open **Profile → Delete account** and confirm the request. Metrica asks Supabase to permanently delete the authentication account. This removes access to the account and invalidates refresh tokens. It does not erase information already sent to Google Gemini, provider security records, or copies saved in your browser. Supabase documents that an already-issued access token may remain valid until it expires. The current app does not use Supabase Storage for user uploads; if that changes, stored objects must also be handled as part of deletion.
 
-- your email address and sign-in details (your password is handled by Supabase's authentication service and is stored in hashed form, so we cannot see it),
+You may also email [Vipinaswal720@gmail.com](mailto:Vipinaswal720@gmail.com) with account or privacy requests.
 
-- the rules and dashboards you save, and
+## 6. Browser storage and technical information
 
-- your saved preferences.
+Metrica uses browser storage for your sign-in session, theme and interface preferences, AI model preference, and saved conditions. Uploaded file contents are used in browser memory during analysis. Clearing Metrica's site data in your browser removes browser-stored preferences and the local sign-in session.
 
-We do **not** store your uploaded spreadsheets. Access controls are set so that each signed-in user can reach only their own saved items. Your data is hosted in [Supabase region]. We keep it until you delete it or ask us to delete your account.
+The app server applies request limits and processes the network information required to handle requests. The current server code does not write Ask AI prompts or sample rows to an application database or log them. Google, Supabase, Vercel, and their infrastructure may process service, security, or operational information under their own terms. Retention periods for those provider records are controlled by the providers and their configurations.
 
-## 5. Technical data and security logs
+## 7. Service providers and sharing
 
-Our server may process your IP address and basic request information (such as time and request type) to keep the service secure, to limit abuse and to enforce usage limits. [These logs are kept for [number] days.] Our hosting provider, [hosting provider name], may also keep standard server logs. We do not write passwords, API keys or the contents of your data samples into our logs.
+Metrica uses these providers to operate its current features:
 
-## 6. Cookies and local storage
+- **Google Gemini API** for optional Ask AI requests;
+- **Supabase** for account authentication; and
+- **Vercel** for website hosting and deployment.
 
-Metrica uses only what it needs to work: your sign-in session (if you have an account) and your preferences, such as the light or dark theme. [Metrica does not use advertising or analytics cookies.] If this changes, we will update this notice and ask for your consent where the law requires it.
+These providers process information needed for their services under their respective terms and may process it in countries other than India. Information may also be disclosed when required by law.
 
-## 7. How we use information
+## 8. Security and responsible use
 
-We use information only to run Metrica, keep it secure, prevent abuse, fix problems and respond to your requests. We do not sell your information, use it for advertising or use it to train our own models.
+The Gemini API key is kept on the server rather than in browser code. Use the production website over HTTPS. No online service can guarantee perfect security. Do not upload information you are not authorized to use, and do not send personal or sensitive information to Ask AI while it uses Google's unpaid Gemini service.
 
-## 8. Who we share information with
+India's data protection framework includes the [Digital Personal Data Protection Act, 2023](https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf) and [Digital Personal Data Protection Rules, 2025](https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa). This notice is intended to describe Metrica's current data flows; it is not a determination that the service satisfies every legal requirement. The business should obtain qualified legal advice about its obligations and any required grievance contact before public launch.
 
-We share information only with the service providers needed to run Metrica:
+## 9. Children
 
-- **Google** (Gemini API), for Ask AI requests,
+Metrica is a general-purpose analytics tool, not a service designed for children. Do not upload children's personal information unless you have confirmed you are authorized to do so and have arranged any protections required by law.
 
-- **Supabase**, for sign-in and saved data,
+## 10. Changes and contact
 
-- **[hosting provider]**, for hosting the website and server.
+If Metrica's data handling changes, this notice will be updated. For privacy questions or requests, contact [Vipinaswal720@gmail.com](mailto:Vipinaswal720@gmail.com).
 
-We may also disclose information if the law requires it. These providers may process data in countries other than your own.
+## Short in-app notices
 
-## 9. Security
+**File upload:**
 
-We protect Metrica with encrypted connections (HTTPS), keep API keys on the server and never in your browser, limit how often the service can be called, validate the data it receives, and restrict access to saved data to its owner. No online service can be made completely secure, so please avoid uploading information you are not comfortable processing in a web application.
+> Your file is analyzed in your browser and is not saved to Metrica's database. You are responsible for the data you choose to upload.
 
-## 10. Your choices and rights
+**Ask AI:**
 
-- You can use Metrica without an account.
+> Ask AI sends your question, dataset summary, column information, and up to 20 real sample rows to Google Gemini. This app uses Google's free or unpaid Gemini API tier, which may use submitted content to improve services and allow human review. Do not send personal, sensitive, confidential, or health data. See the Privacy Notice.
 
-- You can clear your browser data at any time.
+**Sign-up:**
 
-- You can delete your saved rules and dashboards inside the app. [You can delete your account from [location in the app], or by emailing us.]
-
-- You can ask us to access, correct or delete the information we hold about you by emailing [your email address].
-
-Depending on where you live, laws such as India's Digital Personal Data Protection Act, 2023 or the EU's GDPR may give you additional rights, and we will respect them. [Add the name and contact of a grievance officer or data protection contact if your local law requires one.]
-
-## 11. Children
-
-Metrica is not intended for children under [age]. We do not knowingly collect personal information from them.
-
-## 12. Changes to this notice
-
-If we change how Metrica handles information, we will update this notice and its "Last updated" date. For significant changes, we will also tell you in the app.
-
-## 13. Contact
-
-Questions or requests about privacy: [your email address]
-
-## Short in-app notices (copy and paste)
-
-**On the file upload area:**
-
-> Your file is processed in your browser. It is not uploaded to our servers.
-
-**In the Ask AI panel:**
-
-> Ask AI sends your question, column names, data types, summary statistics and up to 20 sample rows to Google Gemini to generate an answer. Your full file is never sent. Don't use Ask AI with personal or sensitive data.
-
-**On the sign-up form:**
-
-> We store your email and the rules, dashboards and preferences you save, not your spreadsheets. See our Privacy Notice for details.
+> Supabase processes your email and sign-in information. Metrica does not currently save your uploaded datasets or saved rules to your account. See the Privacy Notice.

@@ -364,7 +364,7 @@ export default function SignInPage({
         <p className="mt-5 flex items-start justify-center gap-1.5 text-center text-[10px] leading-4 text-glass-muted">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
           <span>
-            Authentication is powered securely by Supabase Auth. Your spreadsheet data stays in your browser memory.
+            Supabase handles account sign-in. Uploaded files are analyzed in your browser; Ask AI sends a question and up to 20 sample rows to Google Gemini. See the Privacy Notice before using Ask AI.
           </span>
         </p>
       </section>
