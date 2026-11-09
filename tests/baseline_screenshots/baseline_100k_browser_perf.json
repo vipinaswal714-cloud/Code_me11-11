@@ -1,0 +1,15 @@
+{
+  "dataset": "100,000 rows",
+  "totalRenderTimeMs": 17,
+  "scrollFps": 16,
+  "scrollAvgDeltaMs": 62.7,
+  "jankFrames": 10,
+  "tabLatenciesMs": {
+    "Data Table": 72,
+    "Cleaning": 35,
+    "Conditions & Logic": 30,
+    "Dashboard": 2138
+  },
+  "longTaskCount": 20,
+  "longTaskTotalMs": 5383
+}

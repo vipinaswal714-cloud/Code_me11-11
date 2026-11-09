@@ -1,0 +1,38 @@
+{
+  "dark": {
+    "violationsCount": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 6
+      },
+      {
+        "id": "label",
+        "impact": "critical",
+        "description": "Ensure every form element has a label",
+        "nodesCount": 2
+      }
+    ],
+    "passesCount": 24
+  },
+  "light": {
+    "violationsCount": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 17
+      },
+      {
+        "id": "label",
+        "impact": "critical",
+        "description": "Ensure every form element has a label",
+        "nodesCount": 2
+      }
+    ],
+    "passesCount": 24
+  }
+}
