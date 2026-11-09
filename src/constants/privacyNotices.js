@@ -5,18 +5,18 @@
  * Changes to legal text or notices must be reflected here and bumped in version.
  */
 
-export const PRIVACY_NOTICE_VERSION = 1;
-export const PRIVACY_NOTICE_LAST_UPDATED = 'November 1, 2026';
+export const PRIVACY_NOTICE_VERSION = 2;
+export const PRIVACY_NOTICE_LAST_UPDATED = 'November 9, 2026';
 
 // Exact in-app notices (do not alter wording without legal approval)
 export const UPLOAD_NOTICE =
-  'Your file is processed in your browser. It is not uploaded to our servers.';
+  'Your file is analyzed in your browser and is not saved to Metrica’s database. You are responsible for the data you choose to upload.';
 
 export const ASK_AI_NOTICE =
-  'Ask AI sends your question, column names, data types, summary statistics and up to 20 sample rows to Google Gemini to generate an answer. Your full file is never sent. Don’t use Ask AI with personal or sensitive data.';
+  'Ask AI sends your question, dataset summary, column information, and up to 20 real sample rows to Google Gemini. This app uses Google’s free or unpaid Gemini API tier, which may use submitted content to improve services and allow human review. Do not send personal, sensitive, confidential, or health data. See the Privacy Notice.';
 
 export const SIGNUP_NOTICE =
-  'We store your email and the rules, dashboards and preferences you save, not your spreadsheets. See our Privacy Notice for details.';
+  'Supabase processes your email and sign-in information. Metrica does not currently save your uploaded datasets or saved rules to your account. See the Privacy Notice.';
 
 export const METRICA_ASK_AI_PRIVACY_ACK_KEY = 'metrica_ask_ai_privacy_ack';
 

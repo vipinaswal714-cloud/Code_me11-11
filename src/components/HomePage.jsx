@@ -64,7 +64,7 @@ const FEATURES = [
   {
     icon: Sparkles,
     title: 'Ask Questions with AI',
-    body: 'Chat with Google Gemini to discover business trends and generate charts. Uses privacy-capped dataset summaries.'
+    body: 'Chat with Google Gemini using dataset summaries and up to 20 real sample rows. Avoid personal or sensitive data with the free tier.'
   }
 ];
 
@@ -82,7 +82,7 @@ const STEPS = [
   {
     step: '03',
     title: 'Ask Gemini questions (Optional)',
-    description: 'Opt-in to Ask AI to summarize insights. Only a capped summary and at most 20 sample rows are ever shared.'
+    description: 'Opt in to Ask AI to summarize insights using dataset context and up to 20 real sample rows. The free tier may use submissions to improve services and allow human review.'
   }
 ];
 
@@ -190,7 +190,7 @@ export default function HomePage({
             <div className="mt-6 flex items-start gap-2.5 rounded-2xl border border-glass-border bg-white/40 dark:bg-white/5 p-3.5 text-xs leading-5 text-glass-secondary backdrop-blur-sm max-w-xl">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
               <div>
-                <strong className="font-semibold text-glass-primary">Privacy-first by design:</strong> Files are analyzed locally in your browser memory. We never store your datasets in external databases. Using Ask AI sends only an aggregated summary and at most 20 sample rows to Google Gemini after you accept the in-app notice.
+                <strong className="font-semibold text-glass-primary">Your data stays under your choice:</strong> Files are analyzed in your browser and are not saved to Metrica’s database. Ask AI sends your question, dataset summary, column information, and up to 20 real sample rows to Google Gemini’s free or unpaid tier, which may use submissions to improve services and allow human review. Do not send personal, sensitive, confidential, or health data.
               </div>
             </div>
           </div>

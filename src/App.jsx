@@ -18,6 +18,7 @@ import BusinessInsightsView from './components/BusinessInsightsView';
 import PrivacyNoticePage from './components/PrivacyNoticePage';
 import HomePage from './components/HomePage';
 import SignInPage from './components/SignInPage';
+import ProfilePage from './components/ProfilePage';
 import Footer from './components/Footer';
 import { generateStarterDashboard } from './utils/autoDashboard';
 import { applyGlobalFilters } from './utils/analyticsEngine';
@@ -76,25 +77,36 @@ export default function App() {
 
   // Supabase Auth session state
   const [session, setSession] = useState(null);
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
+    let active = true;
     try {
       const config = getSupabaseConfig();
-      if (!config.isConfigured) return;
+      if (!config.isConfigured) {
+        setAuthReady(true);
+        return () => { active = false; };
+      }
       const supabase = getSupabase();
       supabase.auth.getSession().then(({ data }) => {
-        if (data?.session) setSession(data.session);
-      }).catch(() => {});
+        if (active) setSession(data?.session || null);
+      }).catch(() => {}).finally(() => {
+        if (active) setAuthReady(true);
+      });
 
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, newSession) => {
         setSession(newSession);
+        setAuthReady(true);
       });
 
       return () => {
+        active = false;
         subscription?.unsubscribe();
       };
     } catch {
       // Safe fallback for unconfigured / guest mode
+      setAuthReady(true);
+      return () => { active = false; };
     }
   }, []);
 
@@ -389,6 +401,37 @@ export default function App() {
     );
   }
 
+  // Route: /profile
+  if (currentPath === '/profile') {
+    if (!authReady) {
+      return (
+        <main className="min-h-screen grid place-items-center text-glass-secondary" aria-live="polite">
+          Loading your account…
+        </main>
+      );
+    }
+    if (!session?.user) {
+      return (
+        <SignInPage
+          onBack={() => navigateTo('/')}
+          onAuthenticated={openStudio}
+          onContinueAsGuest={openStudio}
+          onNavigatePrivacy={() => navigateTo('/privacy')}
+        />
+      );
+    }
+    return (
+      <ProfilePage
+        session={session}
+        onBack={() => navigateTo('/studio')}
+        onDeleted={() => {
+          setSession(null);
+          navigateTo('/');
+        }}
+      />
+    );
+  }
+
   // Route: /login
   if (currentPath === '/login') {
     return (
@@ -468,6 +511,7 @@ export default function App() {
         triggerRef={drawerTriggerRef}
         onNavigateHome={() => navigateTo('/')}
         onNavigateLogin={() => navigateTo('/login')}
+        onNavigateProfile={() => navigateTo('/profile')}
         session={session}
         onSignOut={handleSignOut}
       />

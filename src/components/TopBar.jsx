@@ -35,6 +35,7 @@ export default function TopBar({
   triggerRef,
   onNavigateHome,
   onNavigateLogin,
+  onNavigateProfile,
   session,
   onSignOut
 }) {
@@ -215,6 +216,17 @@ export default function TopBar({
             >
               {session.user.email?.split('@')[0]}
             </span>
+            {onNavigateProfile && (
+              <button
+                type="button"
+                onClick={onNavigateProfile}
+                aria-label="Open profile and account settings"
+                title="Profile and account settings"
+                className="p-1 rounded-lg text-glass-muted hover:text-metrica-600 transition-colors"
+              >
+                <User className="w-3.5 h-3.5" />
+              </button>
+            )}
             {onSignOut && (
               <button
                 type="button"
