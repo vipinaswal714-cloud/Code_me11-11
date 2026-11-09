@@ -1,0 +1,290 @@
+{
+  "dark": {
+    "violationsCount": 1,
+    "labelViolationsCount": 0,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 27,
+        "nodes": [
+          {
+            "html": "<span class=\"font-extrabold text-base tracking-tight text-glass-primary\">Metrica</span>",
+            "target": [
+              ".text-base.font-extrabold.tracking-tight"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[10px] text-glass-muted font-medium\">Analytics Studio</p>",
+            "target": [
+              ".text-glass-muted.font-medium.text-\\[10px\\]"
+            ]
+          },
+          {
+            "html": "<span class=\"font-semibold text-glass-primary truncate text-[11px]\" title=\"Global_Sales_Q1_Q4.xlsx\">Global_Sales_Q1_Q4.xlsx</span>",
+            "target": [
+              ".text-glass-primary.text-\\[11px\\][title=\"Global_Sales_Q1_Q4.xlsx\"]"
+            ]
+          },
+          {
+            "html": "<p class=\"hidden lg:block text-[10px] font-bold uppercase tracking-wider text-glass-muted px-2.5 pb-1\">Views</p>",
+            "target": [
+              "nav > .pb-1.uppercase.tracking-wider"
+            ]
+          },
+          {
+            "html": "<p class=\"hidden lg:block text-[10px] font-bold uppercase tracking-wider text-glass-muted px-2.5 pb-1\">System &amp; Tools</p>",
+            "target": [
+              ".pt-4 > .pb-1.uppercase.tracking-wider"
+            ]
+          },
+          {
+            "html": "<span class=\"text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-metrica-500/20 text-metrica-600 dark:text-metrica-400 border border-metrica-500/30\">AI</span>",
+            "target": [
+              ".text-\\[9px\\]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[10px] text-glass-muted text-center leading-relaxed\">Frosted Glass UI • v18</p>",
+            "target": [
+              ".leading-relaxed"
+            ]
+          },
+          {
+            "html": "<span class=\"font-semibold text-glass-primary truncate max-w-[140px]\" title=\"Global_Sales_Q1_Q4.xlsx\">Global_Sales_Q1_Q4.xlsx</span>",
+            "target": [
+              ".max-w-\\[140px\\]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Total Units Sold\">Total Units Sold</h4>",
+            "target": [
+              "h4[title=\"Total Units Sold\"]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Avg Units Sold\">Avg Units Sold</h4>",
+            "target": [
+              "h4[title=\"Avg Units Sold\"]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Max Units Sold\">Max Units Sold</h4>",
+            "target": [
+              "h4[title=\"Max Units Sold\"]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Avg Unit Price\">Avg Unit Price</h4>",
+            "target": [
+              "h4[title=\"Avg Unit Price\"]"
+            ]
+          },
+          {
+            "html": "<span class=\"text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white\" style=\"color: rgb(16, 185, 129);\">206.1</span>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(4) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .items-baseline.gap-2.flex > .text-3xl.sm\\:text-4xl.dark\\:text-white"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Units Sold by Region\">Units Sold by Region</h4>",
+            "target": [
+              "h4[title=\"Units Sold by Region\"]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Region</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(1) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Units Sold Trend over Time\">Units Sold Trend over Time</h4>",
+            "target": [
+              "h4[title=\"Units Sold Trend over Time\"]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Date</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(2) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Region Share\">Region Share</h4>",
+            "target": [
+              "h4[title=\"Region Share\"]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Region</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(3) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Correlation: Units Sold vs Unit Price\">Correlation: Units Sold vs Unit Price</h4>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(4) > .items-start.mb-3.justify-between > div:nth-child(1) > .gap-2.items-center.flex > h4"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">NONE(Unit Price) by Units Sold</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(4) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<h4 class=\"font-bold text-sm text-slate-800 dark:text-slate-100 truncate max-w-[220px] sm:max-w-xs\" title=\"Frequency Distribution of Units Sold\">Frequency Distribution of Units Sold</h4>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(5) > .items-start.mb-3.justify-between > div:nth-child(1) > .gap-2.items-center.flex > h4"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">COUNT(Units Sold) by Units Sold</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(5) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<span>Metrica</span>",
+            "target": [
+              ".dark\\:text-slate-200.text-slate-700.gap-1\\.5 > span:nth-child(2)"
+            ]
+          },
+          {
+            "html": "<span class=\"flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium\">",
+            "target": [
+              ".text-emerald-600.dark\\:text-emerald-400.font-medium"
+            ]
+          },
+          {
+            "html": "<span>Settings</span>",
+            "target": [
+              ".hover\\:text-slate-800 > span"
+            ]
+          },
+          {
+            "html": "<span class=\"text-[11px] text-slate-400 dark:text-slate-500\">Updated November 1, 2026</span>",
+            "target": [
+              ".dark\\:text-slate-500.text-\\[11px\\].text-slate-400"
+            ]
+          }
+        ]
+      }
+    ],
+    "passesCount": 23
+  },
+  "light": {
+    "violationsCount": 1,
+    "labelViolationsCount": 0,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 16,
+        "nodes": [
+          {
+            "html": "<span class=\"text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-metrica-500/20 text-metrica-600 dark:text-metrica-400 border border-metrica-500/30\">AI</span>",
+            "target": [
+              ".text-\\[9px\\]"
+            ]
+          },
+          {
+            "html": "<span class=\"text-slate-400\">to</span>",
+            "target": [
+              ".text-slate-400:nth-child(4)"
+            ]
+          },
+          {
+            "html": "<p class=\"text-xs text-slate-400 dark:text-slate-500 mt-1 font-medium\">Sum of all records</p>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(1) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .mt-1.dark\\:text-slate-500.font-medium"
+            ]
+          },
+          {
+            "html": "<p class=\"text-xs text-slate-400 dark:text-slate-500 mt-1 font-medium\">Mean average value</p>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(2) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .mt-1.dark\\:text-slate-500.font-medium"
+            ]
+          },
+          {
+            "html": "<p class=\"text-xs text-slate-400 dark:text-slate-500 mt-1 font-medium\">Peak single record</p>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(3) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .mt-1.dark\\:text-slate-500.font-medium"
+            ]
+          },
+          {
+            "html": "<span class=\"text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white\" style=\"color: rgb(16, 185, 129);\">206.1</span>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(4) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .items-baseline.gap-2.flex > .text-3xl.sm\\:text-4xl.dark\\:text-white"
+            ]
+          },
+          {
+            "html": "<p class=\"text-xs text-slate-400 dark:text-slate-500 mt-1 font-medium\">Mean average value</p>",
+            "target": [
+              ".lg\\:col-span-3.sm\\:col-span-6.border-slate-200\\/80:nth-child(4) > .min-h-\\[190px\\].justify-center.flex-1 > .sm\\:text-left.py-4.text-center > .mt-1.dark\\:text-slate-500.font-medium"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Region</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(1) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Date</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(2) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">SUM(Units Sold) by Region</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(3) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">NONE(Unit Price) by Units Sold</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(4) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 mt-0.5\">COUNT(Units Sold) by Units Sold</p>",
+            "target": [
+              ".lg\\:col-span-6.border-slate-200\\/80.p-5:nth-child(5) > .items-start.mb-3.justify-between > div:nth-child(1) > .mt-0\\.5.text-\\[11px\\]"
+            ]
+          },
+          {
+            "html": "<span class=\"text-xs font-bold uppercase tracking-wider\">Add Custom Chart</span>",
+            "target": [
+              ".lg\\:col-span-4 > .uppercase.tracking-wider.font-bold"
+            ]
+          },
+          {
+            "html": "<p class=\"text-[11px] text-slate-400 text-center max-w-[200px]\">Choose dimensions, aggregations, and visual style</p>",
+            "target": [
+              ".max-w-\\[200px\\]"
+            ]
+          },
+          {
+            "html": "<span class=\"flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium\">",
+            "target": [
+              ".text-emerald-600.dark\\:text-emerald-400.font-medium"
+            ]
+          },
+          {
+            "html": "<span class=\"text-[11px] text-slate-400 dark:text-slate-500\">Updated November 1, 2026</span>",
+            "target": [
+              ".dark\\:text-slate-500.text-\\[11px\\].text-slate-400"
+            ]
+          }
+        ]
+      }
+    ],
+    "passesCount": 23
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "dataset": "100,000 rows (Glass UI)",
+  "totalRenderTimeMs": 18,
+  "scrollFps": 15,
+  "scrollAvgDeltaMs": 66.2,
+  "jankFrames": 10,
+  "tabLatenciesMs": {
+    "Data Table": 72,
+    "Cleaning": 35,
+    "Conditions & Logic": 31,
+    "Charts": 2383
+  },
+  "longTaskCount": 16,
+  "longTaskTotalMs": 5527
+}

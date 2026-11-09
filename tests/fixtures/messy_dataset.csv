@@ -1,0 +1,11 @@
+Order_ID,Customer,City,Order_Date,Quantity,Revenue
+ORD-001,Alice,Delhi,2025-01-15,2,450
+ORD-002,Bob,delhi ,2025-02-10,1,120
+ORD-003,Charlie,Dehli,2025-02-14,3,95000
+ORD-004,David,Mumbai,2025-03-01,5,600
+ORD-005,Eva,mumbai,2025-03-12,-4,250
+ORD-006,Frank,,2025-04-05,2,300
+ORD-007,Grace,Bangalore,2035-11-20,1,180
+ORD-008,Helen,Bangalore,2025-05-18,,220
+ORD-001,Alice,Delhi,2025-01-15,2,450
+ORD-009,Ian,Delhi,2025-06-01,4,550

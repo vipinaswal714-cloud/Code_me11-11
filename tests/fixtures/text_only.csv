@@ -1,0 +1,9 @@
+Employee_ID,Department,Role,Location,Proficiency,Status
+EMP-001,Engineering,Frontend Lead,Remote,Expert,Active
+EMP-002,Engineering,Backend Senior,New York,Advanced,Active
+EMP-003,Design,Product Designer,London,Expert,Active
+EMP-004,Marketing,Growth Specialist,Berlin,Intermediate,Leave
+EMP-005,Product,Technical PM,Tokyo,Advanced,Active
+EMP-006,Engineering,QA Architect,Remote,Expert,Active
+EMP-007,Operations,HR Manager,Singapore,Advanced,Active
+EMP-008,Design,UX Researcher,New York,Intermediate,Active

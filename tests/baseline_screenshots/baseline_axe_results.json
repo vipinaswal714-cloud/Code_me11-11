@@ -1,0 +1,42 @@
+{
+  "dark": {
+    "violationsCount": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 5,
+        "sampleNode": ".lg\\:col-span-3.sm\\:col-span-6.p-5:nth-child(1) > .min-h-\\[190px\\].flex-1.justify-center > .py-4.sm\\:text-left.text-center > .mt-1.dark\\:text-slate-500.font-medium"
+      },
+      {
+        "id": "label",
+        "impact": "critical",
+        "description": "Ensure every form element has a label",
+        "nodesCount": 2,
+        "sampleNode": ".bg-transparent[type=\"date\"]:nth-child(3)"
+      }
+    ],
+    "passesCount": 24
+  },
+  "light": {
+    "violationsCount": 2,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodesCount": 18,
+        "sampleNode": ".text-lg"
+      },
+      {
+        "id": "label",
+        "impact": "critical",
+        "description": "Ensure every form element has a label",
+        "nodesCount": 2,
+        "sampleNode": ".bg-transparent[type=\"date\"]:nth-child(3)"
+      }
+    ],
+    "passesCount": 24
+  }
+}
