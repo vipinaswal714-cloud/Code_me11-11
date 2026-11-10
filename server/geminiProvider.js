@@ -62,7 +62,7 @@ export function mapGeminiError(error) {
   if (status === 401 || status === 403 || (status === 400 && /api[_\s]?key|invalid[_\s]?argument/i.test(errMsg))) {
     return {
       statusCode: 401,
-      message: 'Invalid or restricted Google Gemini API key. Please check your key in server/.env.'
+      message: 'Invalid or restricted Google Gemini API key. Check the server environment variable GEMINI_API_KEY.'
     };
   }
 
@@ -78,7 +78,7 @@ export function mapGeminiError(error) {
   if (status === 404 || /not[_\s]?found/i.test(errMsg)) {
     return {
       statusCode: 404,
-      message: 'Requested Gemini model was not found. Please verify the GEMINI_MODEL in server/.env.'
+      message: 'Requested Gemini model was not found. Check the server environment variable GEMINI_MODEL.'
     };
   }
 
@@ -121,7 +121,7 @@ export async function callGemini({ apiKey, model, systemInstruction, userPrompt,
   if (!apiKey || !apiKey.trim()) {
     throw {
       status: 401,
-      message: 'Missing GEMINI_API_KEY. Configure GEMINI_API_KEY in server/.env.'
+      message: 'Missing GEMINI_API_KEY. Configure it in the server environment.'
     };
   }
 
@@ -167,7 +167,7 @@ export async function checkGeminiHealth({ apiKey, model = DEFAULT_GEMINI_MODEL }
     return {
       ok: false,
       configured: false,
-      message: 'GEMINI_API_KEY is not configured in server/.env.'
+      message: 'GEMINI_API_KEY is not configured in the server environment.'
     };
   }
 

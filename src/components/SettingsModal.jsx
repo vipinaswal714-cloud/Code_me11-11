@@ -77,7 +77,7 @@ export default function SettingsModal({ isOpen, onClose }) {
       }
     } catch {
       setTestStatus('error');
-      setTestMessage('Could not reach the Metrica backend proxy at /api. Please ensure the server is running on port 3001.');
+      setTestMessage('Could not reach the Metrica AI endpoint. Check the deployment and try again.');
     }
   };
 
@@ -113,7 +113,7 @@ export default function SettingsModal({ isOpen, onClose }) {
               <p className="font-semibold text-emerald-600 dark:text-emerald-400">Backend Key Security Architecture</p>
               <p className="text-[11px] text-glass-secondary mt-0.5 leading-relaxed">
                 For maximum security, API keys are never entered, stored, or held in the browser.
-                Your <code className="px-1 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded font-mono">GEMINI_API_KEY</code> is loaded strictly by the server from <code className="px-1 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded font-mono">server/.env</code>.
+                Your <code className="px-1 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded font-mono">GEMINI_API_KEY</code> stays on the server. Locally it is read from <code className="px-1 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded font-mono">server/.env</code>; on Vercel, add it as a server environment variable.
               </p>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function SettingsModal({ isOpen, onClose }) {
             <p className="text-[11px] text-glass-muted">
               {proxyInfo?.configured
                 ? 'Server environment key is detected and ready.'
-                : 'Server key not detected. Ensure GEMINI_API_KEY is defined in server/.env.'}
+                : 'Server is reachable, but GEMINI_API_KEY is not configured. Add it to the Vercel project environment variables, then redeploy.'}
             </p>
           </div>
 
