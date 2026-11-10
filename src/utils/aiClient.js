@@ -3,7 +3,8 @@
  *
  * Dedicated client-side integration for Ask AI powered by Google Gemini.
  * Frontend NEVER holds or requests an API key: all queries route through
- * the local backend proxy (/api/ai/chat) which loads GEMINI_API_KEY from server/.env.
+ * the backend endpoint (/api/ai/chat), which reads GEMINI_API_KEY only on the server
+ * (server/.env locally or a server-side environment variable on Vercel).
  */
 
 import { validateRuleSchema } from './ruleEvaluator.js';
